@@ -1,0 +1,790 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>BalikSakay - Digital Ride Receipt & Community Relay</title>
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Outfit:wght@600;700;800;900&family=Plus+Jakarta+Sans:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+  <!-- Floating Action Toolbar (Hidden during Print / PDF Export) -->
+  <aside class="toolbar no-print" aria-label="Poster Controls">
+    <div class="toolbar-brand">
+      <span class="toolbar-dot"></span>
+      <strong>TalaRide Poster Editor</strong>
+    </div>
+    <div class="toolbar-actions">
+      <button id="toggleEditBtn" class="btn btn-secondary" onclick="toggleEditMode()">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"></path><path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z"></path></svg>
+        <span id="editBtnText">Enable Edit Mode</span>
+      </button>
+      <button class="btn btn-primary" onclick="window.print()">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><polyline points="6 9 6 2 18 2 18 9"></polyline><path d="M6 18H4a2 2 0 0 1-2-2v-5a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2h-2"></path><rect x="6" y="14" width="12" height="8"></rect></svg>
+        <span>Print / Save PDF</span>
+      </button>
+      <button class="btn btn-outline" onclick="saveToLocalStorage()">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M19 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11l5 5v11a2 2 0 0 1-2 2z"></path><polyline points="17 21 17 13 7 13 7 21"></polyline><polyline points="7 3 7 8 15 8"></polyline></svg>
+        <span>Save Draft</span>
+      </button>
+      <button class="btn btn-outline" onclick="resetDefaults()">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M3 12a9 9 0 1 0 9-9 9.75 9.75 0 0 0-6.74 2.74L3 8"></path><path d="M3 3v5h5"></path></svg>
+        <span>Reset</span>
+      </button>
+    </div>
+  </aside>
+
+  <!-- Main Infographic Poster Canvas (Calibrated for exact 1-page A4) -->
+  <main class="poster" id="posterRoot">
+
+    <!-- ==================== HEADER SECTION ==================== -->
+    <header class="poster-header">
+      <div class="header-left">
+        <!-- Official TalaRide Logo & Tagline -->
+        <div class="logo-wrapper talaride-logo-wrapper">
+          <img src="assets/talaride_brand_header.png" alt="TalaRide - Remember every ride." class="talaride-header-logo" />
+        </div>
+
+        <!-- Description -->
+        <p class="header-desc">
+          A digital ride record system for everyday street-hailed pedicabs and tricycles in Tagum City.
+        </p>
+
+        <!-- Quick Value Highlights Bar -->
+        <div class="header-highlights">
+          <span class="hh-chip"><img src="https://api.iconify.design/lucide:map-pin.svg?color=%231BA24A" alt="" class="hh-icon" /> Tagum City Focus</span>
+          <span class="hh-chip"><img src="https://api.iconify.design/lucide:shield-check.svg?color=%231BA24A" alt="" class="hh-icon" /> Privacy by Design</span>
+          <span class="hh-chip"><img src="https://api.iconify.design/lucide:zap.svg?color=%231BA24A" alt="" class="hh-icon" /> No Driver App Needed</span>
+        </div>
+      </div>
+
+      <div class="header-right dual-hero-section">
+        <div class="dual-hero-wrap">
+          <div class="hero-image-item">
+            <img src="assets/tagum_pedicabs_front_blend.png" alt="Tagum City Pedicab Fleet" class="hero-dual-img" />
+            <div class="trike-tag blend-tag">STREET FLEET</div>
+          </div>
+          <div class="hero-image-item">
+            <img src="assets/tagum_pedicabs_terminal_blend.png" alt="Tagum City Pedicab Terminal" class="hero-dual-img" />
+            <div class="trike-tag blend-tag">CITY TERMINAL</div>
+          </div>
+        </div>
+      </div>
+    </header>
+
+    <!-- ==================== ROW 1: PROBLEM / BENEFICIARIES / SOLUTION ==================== -->
+    <section class="grid-3-col top-cards-section">
+      
+      <!-- 1. THE PROBLEM -->
+      <article class="info-card problem-card">
+        <div class="card-header">
+          <span class="badge badge-green">1</span>
+          <h2 class="card-title">THE PROBLEM</h2>
+        </div>
+        <div class="card-body">
+          <p class="text-sm">
+            Street-hailed pedicab and tricycle rides usually leave no digital record. Passengers may forget the plate number, MTOP number, ride time, or vehicle details.
+          </p>
+          <p class="text-sm">
+            This becomes a problem when they leave an item inside, need to identify the vehicle later, or want to report an incident.
+          </p>
+          <div class="card-illustration problem-illus">
+            <svg class="illus-svg" viewBox="0 0 90 70" fill="none">
+              <circle cx="70" cy="18" r="12" fill="#e2e8f0" stroke="#047857" stroke-width="1.8"/>
+              <text x="70" y="23" text-anchor="middle" font-family="'Plus Jakarta Sans', sans-serif" font-size="15" font-weight="800" fill="#047857">?</text>
+              <circle cx="38" cy="24" r="10" stroke="#047857" stroke-width="2.2" fill="#f0fdf4"/>
+              <path d="M18 58 C 19 41, 57 41, 58 58" stroke="#047857" stroke-width="2.2" fill="#f0fdf4"/>
+              <path d="M48 24 C 54 18, 56 25, 46 32" stroke="#047857" stroke-width="2" stroke-linecap="round"/>
+            </svg>
+          </div>
+        </div>
+      </article>
+
+      <!-- 2. BENEFICIARIES -->
+      <article class="info-card beneficiaries-card">
+        <div class="card-header">
+          <span class="badge badge-green">2</span>
+          <h2 class="card-title">BENEFICIARIES</h2>
+        </div>
+        <div class="card-body">
+          <!-- Primary -->
+          <div class="beneficiary-group">
+            <h3 class="group-label">Primary:</h3>
+            <p class="text-xs group-desc">
+              Students, workers, night commuters, regular pedicab passengers, visitors.
+            </p>
+            <div class="icon-row">
+              <!-- Student -->
+              <div class="icon-bubble" title="Students">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="12" cy="7" r="3.5"/><path d="M5 20v-2a7 7 0 0 1 14 0v2"/><path d="M12 2 L6 5 L12 8 L18 5 Z"/></svg>
+              </div>
+              <!-- Worker -->
+              <div class="icon-bubble" title="Workers">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="12" cy="7" r="3.5"/><path d="M5 20v-2a7 7 0 0 1 14 0v2"/><rect x="8" y="13.5" width="8" height="5" rx="1"/></svg>
+              </div>
+              <!-- Female passenger -->
+              <div class="icon-bubble" title="Regular Passengers">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="12" cy="7" r="3.5"/><path d="M5 20v-2a7 7 0 0 1 14 0v2"/><path d="M8 8c0 2.5 8 2.5 8 0"/></svg>
+              </div>
+              <!-- Visitor -->
+              <div class="icon-bubble" title="Visitors & Locals">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="12" cy="7.5" r="3.5"/><path d="M5 20v-2a7 7 0 0 1 14 0v2"/><path d="M6 6h12l-2-2.5H8z"/></svg>
+              </div>
+            </div>
+          </div>
+
+          <div class="divider-dotted"></div>
+
+          <!-- Secondary -->
+          <div class="beneficiary-group">
+            <h3 class="group-label">Secondary:</h3>
+            <p class="text-xs group-desc">
+              Families, drivers, transport associations, Tagum Traffic Management Office, schools, LGUs.
+            </p>
+            <div class="icon-row">
+              <!-- Family -->
+              <div class="icon-bubble" title="Families">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="9" cy="7" r="3"/><circle cx="16" cy="9" r="2.5"/><path d="M3 20v-1a5 5 0 0 1 10 0v1"/><path d="M14 20v-1a4 4 0 0 1 7 0v1"/></svg>
+              </div>
+              <!-- Driver -->
+              <div class="icon-bubble" title="Drivers">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="12" cy="8" r="3.5"/><path d="M5 20v-1a7 7 0 0 1 14 0v1"/><path d="M8.5 4.5h7"/></svg>
+              </div>
+              <!-- Traffic Office Badge -->
+              <div class="icon-bubble" title="Traffic Management">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/><circle cx="12" cy="11" r="2.5"/></svg>
+              </div>
+              <!-- School -->
+              <div class="icon-bubble" title="Schools">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M2 10l10-5 10 5-10 5z"/><path d="M6 12v5c0 2 6 2 6 0v-5"/><path d="M22 10v6"/></svg>
+              </div>
+              <!-- LGU / City Hall -->
+              <div class="icon-bubble" title="Local Government Units">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M3 21h18M4 18h16M5 10v8M9 10v8M15 10v8M19 10v8M3 10l9-6 9 6z"/></svg>
+              </div>
+            </div>
+          </div>
+        </div>
+      </article>
+
+      <!-- 3. THE SOLUTION -->
+      <article class="info-card solution-card">
+        <div class="card-header">
+          <span class="badge badge-green">3</span>
+          <h2 class="card-title">THE SOLUTION</h2>
+        </div>
+        <div class="card-body solution-layout">
+          <div class="solution-text">
+            <p class="text-sm">
+              TalaRide lets passengers scan a street-hailed pedicab or tricycle using their phone camera.
+            </p>
+            <p class="text-sm">
+              The app detects visible vehicle identifiers such as the plate, MTOP, or body number and creates a private digital ride receipt with date, time, and optional location.
+            </p>
+          </div>
+
+          <!-- Realistic Phone Receipt Mockup -->
+          <div class="phone-mockup-wrap">
+            <div class="mini-phone realistic-iphone">
+              <div class="phone-dynamic-island"></div>
+              <div class="phone-header">
+                <span class="back-caret">‹</span>
+                <span class="phone-title">TalaRide Receipt</span>
+              </div>
+              <div class="phone-content">
+                <div class="receipt-card">
+                  <span class="rc-label">MTOP NO.</span>
+                  <span class="rc-number">1842</span>
+                  <span class="rc-location">TAGUM CITY</span>
+                  <div class="rc-divider"></div>
+                  <div class="rc-details">
+                    <span>May 24, 2025</span>
+                    <span>7:45 PM</span>
+                  </div>
+                  <div class="rc-street">
+                    <svg viewBox="0 0 24 24" fill="#dc2626" width="9" height="9"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/></svg>
+                    <span>Rizal St., Tagum City</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <!-- Privacy Lock Badge -->
+            <div class="security-lock-badge" title="Encrypted & Private Record">
+              <svg viewBox="0 0 24 24" fill="none" stroke="#ffffff" stroke-width="2.6"><rect x="4" y="11" width="16" height="10" rx="2"/><path d="M8 11V7a4 4 0 0 1 8 0v4"/></svg>
+            </div>
+          </div>
+        </div>
+      </article>
+
+    </section>
+
+    <!-- ==================== SECTION 4: HOW IT WORKS ==================== -->
+    <section class="how-it-works-section">
+      <div class="section-title-bar">
+        <span class="badge badge-green">4</span>
+        <h2 class="section-heading">HOW IT WORKS</h2>
+      </div>
+
+      <div class="workflow-strip">
+        <!-- Step 1: Scan (HD Camera Viewfinder Phone) -->
+        <div class="step-card">
+          <div class="step-badge-row">
+            <span class="step-circle">1</span>
+            <span class="step-name">Scan</span>
+          </div>
+          <p class="step-desc">Point camera<br/>at vehicle.</p>
+          <div class="step-visual">
+            <div class="scan-camera-container">
+              <img src="assets/step1_camera_scan_hd.jpg" alt="Scan pedicab with phone camera" class="step1-img" onerror="this.src='assets/step1_scan.png'" />
+            </div>
+          </div>
+        </div>
+
+        <div class="workflow-arrow">
+          <svg viewBox="0 0 24 24" fill="none" stroke="#64748b" stroke-width="2.5"><path d="M5 12h14M13 5l7 7-7 7"/></svg>
+        </div>
+
+        <!-- Step 2: Identify (OCR Target) -->
+        <div class="step-card">
+          <div class="step-badge-row">
+            <span class="step-circle">2</span>
+            <span class="step-name">AI Suggest</span>
+          </div>
+          <p class="step-desc">AI detects plate or MTOP number.</p>
+          <div class="step-visual">
+            <div class="ocr-bracket-box">
+              <span class="bracket tl"></span>
+              <span class="bracket tr"></span>
+              <span class="bracket bl"></span>
+              <span class="bracket br"></span>
+              <div class="ocr-content">
+                <div class="ocr-label">MTOP NO.</div>
+                <div class="ocr-digits">1842</div>
+                <div class="ocr-sub">TAGUM CITY</div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="workflow-arrow">
+          <svg viewBox="0 0 24 24" fill="none" stroke="#64748b" stroke-width="2.5"><path d="M5 12h14M13 5l7 7-7 7"/></svg>
+        </div>
+
+        <!-- Step 3: Confirm (Phone UI) -->
+        <div class="step-card">
+          <div class="step-badge-row">
+            <span class="step-circle">3</span>
+            <span class="step-name">Confirm</span>
+          </div>
+          <p class="step-desc">Passenger verifies or edits details.</p>
+          <div class="step-visual">
+            <div class="step-phone">
+              <div class="sp-screen confirm-screen">
+                <div class="sp-label">MTOP NO.</div>
+                <div class="sp-number-row">
+                  <span class="sp-bold-num">1842</span>
+                  <svg class="check-circle-svg" viewBox="0 0 24 24" fill="#10b981"><circle cx="12" cy="12" r="10"/><path d="M8 12l3 3 5-5" stroke="#ffffff" stroke-width="2.5" fill="none"/></svg>
+                </div>
+                <div class="sp-subtext">TAGUM CITY</div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="workflow-arrow">
+          <svg viewBox="0 0 24 24" fill="none" stroke="#64748b" stroke-width="2.5"><path d="M5 12h14M13 5l7 7-7 7"/></svg>
+        </div>
+
+        <!-- Step 4: Start Ride (Phone UI) -->
+        <div class="step-card">
+          <div class="step-badge-row">
+            <span class="step-circle">4</span>
+            <span class="step-name">Start Ride</span>
+          </div>
+          <p class="step-desc">Private ride receipt is created.</p>
+          <div class="step-visual">
+            <div class="step-phone">
+              <div class="sp-screen receipt-screen">
+                <div class="sp-header-status">Ride Started</div>
+                <div class="sp-label-mini">MTOP NO.</div>
+                <div class="sp-bold-num-sm">1842</div>
+                <div class="sp-date-row">
+                  <span>May 24, 2025</span>
+                  <span class="loc-dot">📍 7:45 PM</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="workflow-arrow">
+          <svg viewBox="0 0 24 24" fill="none" stroke="#64748b" stroke-width="2.5"><path d="M5 12h14M13 5l7 7-7 7"/></svg>
+        </div>
+
+        <!-- Step 5: Save (Phone UI) -->
+        <div class="step-card">
+          <div class="step-badge-row">
+            <span class="step-circle">5</span>
+            <span class="step-name">Save</span>
+          </div>
+          <p class="step-desc">Stored locally on rider's device.</p>
+          <div class="step-visual">
+            <div class="step-phone">
+              <div class="sp-screen history-screen">
+                <div class="sp-header-status">My Rides</div>
+                <div class="history-item active-item">
+                  <span class="hi-thumb">🛺</span>
+                  <div class="hi-info">
+                    <span class="hi-num">1842</span>
+                    <span class="hi-date">May 24, 7:45 PM</span>
+                  </div>
+                </div>
+                <div class="history-item">
+                  <span class="hi-thumb">🛺</span>
+                  <div class="hi-info">
+                    <span class="hi-num">1256</span>
+                    <span class="hi-date">May 22, 6:30 PM</span>
+                  </div>
+                </div>
+                <div class="history-item">
+                  <span class="hi-thumb">🛺</span>
+                  <div class="hi-info">
+                    <span class="hi-num">0775</span>
+                    <span class="hi-date">May 21, 8:09 PM</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- ==================== SECTION 5: COMMUNITY LOST-ITEM RELAY ==================== -->
+    <section class="relay-section">
+      <div class="relay-container">
+        
+        <!-- Left Side Info -->
+        <div class="relay-left">
+          <div class="relay-title-group">
+            <span class="badge badge-gold">5</span>
+            <h2 class="relay-heading">COMMUNITY<br/>LOST-ITEM RELAY</h2>
+          </div>
+          <p class="relay-subhead">
+            Turning a ride record <br/>
+            <span class="relay-highlight">into a community safety net.</span>
+          </p>
+
+          <ul class="feature-checklist">
+            <li class="check-item">
+              <span class="check-icon">✔</span>
+              <span>No Driver App</span>
+            </li>
+            <li class="check-item">
+              <span class="check-icon">✔</span>
+              <span>No QR Required</span>
+            </li>
+            <li class="check-item">
+              <span class="check-icon">✔</span>
+              <span>No Booking Required</span>
+            </li>
+          </ul>
+        </div>
+
+        <!-- Right Side 4-Stage Relay Flow -->
+        <div class="relay-flow">
+          
+          <!-- Relay Step 1: Passenger A HD Image -->
+          <div class="relay-step">
+            <div class="relay-step-header">
+              <span class="relay-num-badge">1</span>
+              <p class="relay-step-text">
+                <strong>Passenger A</strong> scans Pedicab <strong>#1842</strong> and later reports a lost item.
+              </p>
+            </div>
+            <div class="relay-graphic">
+              <div class="vehicle-tag-pill">#1842</div>
+              <div class="avatar-card">
+                <img src="assets/passenger_a_hd.jpg" alt="Passenger A" class="pass-avatar-img" onerror="this.src='assets/passenger_a.png'" />
+                <div class="pass-pill-badge">Passenger A</div>
+              </div>
+            </div>
+          </div>
+
+          <div class="relay-arrow">→</div>
+
+          <!-- Relay Step 2: Lost Item Report Card -->
+          <div class="relay-step">
+            <div class="relay-step-header">
+              <span class="relay-num-badge">2</span>
+              <p class="relay-step-text">
+                An anonymous, expiring matching token is generated.
+              </p>
+            </div>
+            <div class="relay-graphic">
+              <div class="lost-report-card">
+                <div class="lrc-title">Lost Item Reported</div>
+                <div class="lrc-body">
+                  <div class="lrc-bag-icon">
+                    <svg viewBox="0 0 24 24" fill="#ef4444"><path d="M20 7h-4V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v2H4a2 2 0 0 0-2 2v10a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V9a2 2 0 0 0-2-2zM10 5h4v2h-4V5z"/></svg>
+                  </div>
+                  <div class="lrc-text">
+                    <span>Linked to</span>
+                    <strong>Pedicab #1842</strong>
+                  </div>
+                </div>
+                <div class="lrc-dots">•••</div>
+              </div>
+            </div>
+          </div>
+
+          <div class="relay-arrow">→</div>
+
+          <!-- Relay Step 3: Passenger B HD Image -->
+          <div class="relay-step">
+            <div class="relay-step-header">
+              <span class="relay-num-badge">3</span>
+              <p class="relay-step-text">
+                If another TalaRide user later scans the vehicle, they get a discreet relay prompt.
+              </p>
+            </div>
+            <div class="relay-graphic">
+              <div class="avatar-card">
+                <img src="assets/passenger_b_hd.jpg" alt="Passenger B" class="pass-avatar-img" onerror="this.src='assets/passenger_b.png'" />
+                <div class="pass-pill-badge">Passenger B</div>
+              </div>
+            </div>
+          </div>
+
+          <div class="relay-arrow">→</div>
+
+          <!-- Relay Step 4: Notification Mockup -->
+          <div class="relay-step">
+            <div class="relay-step-header">
+              <span class="relay-num-badge">4</span>
+              <p class="relay-step-text">
+                A privacy-safe notification connects them with zero location tracking.
+              </p>
+            </div>
+            <div class="relay-graphic">
+              <div class="notification-mockup">
+                <div class="notif-top">
+                  <div class="notif-app-info">
+                    <img src="assets/talaride_app_icon.png" alt="TalaRide" class="notif-app-icon-img" />
+                    <span class="notif-app-name">TalaRide</span>
+                  </div>
+                  <span class="notif-time">now</span>
+                </div>
+                <div class="notif-content">
+                  <p class="notif-msg">
+                    <strong>Ride saved:</strong> A previous passenger may have left an item in this vehicle.
+                  </p>
+                  <div class="notif-bell">
+                    <svg viewBox="0 0 24 24" fill="#fbbf24" width="16" height="16"><path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9"/><path d="M13.73 21a2 2 0 0 1-3.46 0"/></svg>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+        </div>
+
+      </div>
+    </section>
+
+    <!-- ==================== ROW 3: FEATURES / EMERGING TECH / TECH STACK ==================== -->
+    <section class="grid-3-col bottom-cards-section">
+      
+      <!-- 6. KEY FEATURES -->
+      <article class="info-card features-card">
+        <div class="card-header">
+          <span class="badge badge-green">6</span>
+          <h2 class="card-title">KEY FEATURES</h2>
+        </div>
+        <div class="card-body">
+          <div class="features-grid">
+            
+            <div class="feature-tile">
+              <div class="feat-icon">
+                <img src="https://api.iconify.design/lucide:smartphone-nfc.svg?color=%23056b38" alt="Smart Ride Scanner" class="feat-cdn-icon" />
+              </div>
+              <span class="feat-name">Smart Ride<br/>Scanner</span>
+            </div>
+
+            <div class="feature-tile">
+              <div class="feat-icon">
+                <img src="https://api.iconify.design/lucide:receipt.svg?color=%23056b38" alt="Digital Ride Receipt" class="feat-cdn-icon" />
+              </div>
+              <span class="feat-name">Digital Ride<br/>Receipt</span>
+            </div>
+
+            <div class="feature-tile">
+              <div class="feat-icon">
+                <img src="https://api.iconify.design/lucide:history.svg?color=%23056b38" alt="Ride History" class="feat-cdn-icon" />
+              </div>
+              <span class="feat-name">Ride<br/>History</span>
+            </div>
+
+            <div class="feature-tile">
+              <div class="feat-icon">
+                <img src="https://api.iconify.design/lucide:shopping-bag.svg?color=%23056b38" alt="Lost Item Mode" class="feat-cdn-icon" />
+              </div>
+              <span class="feat-name">Lost Item<br/>Mode</span>
+            </div>
+
+            <div class="feature-tile">
+              <div class="feat-icon">
+                <img src="https://api.iconify.design/lucide:users.svg?color=%23056b38" alt="Community Relay" class="feat-cdn-icon" />
+              </div>
+              <span class="feat-name">Community<br/>Relay</span>
+            </div>
+
+            <div class="feature-tile">
+              <div class="feat-icon">
+                <img src="https://api.iconify.design/lucide:shield-check.svg?color=%23056b38" alt="Trusted Contact" class="feat-cdn-icon" />
+              </div>
+              <span class="feat-name">Trusted<br/>Contact</span>
+            </div>
+
+            <div class="feature-tile">
+              <div class="feat-icon">
+                <img src="https://api.iconify.design/lucide:map-pin.svg?color=%23056b38" alt="Location Context" class="feat-cdn-icon" />
+              </div>
+              <span class="feat-name">Location<br/>Context</span>
+            </div>
+
+            <div class="feature-tile">
+              <div class="feat-icon">
+                <img src="https://api.iconify.design/lucide:lock.svg?color=%23056b38" alt="Privacy First" class="feat-cdn-icon" />
+              </div>
+              <span class="feat-name">Privacy<br/>First</span>
+            </div>
+
+          </div>
+        </div>
+      </article>
+
+      <!-- 7. EMERGING TECHNOLOGIES (With Official Online CDN Logos) -->
+      <article class="info-card emerging-tech-card">
+        <div class="card-header">
+          <span class="badge badge-green">7</span>
+          <h2 class="card-title">EMERGING TECHNOLOGIES</h2>
+        </div>
+        <div class="card-body">
+          <ul class="tech-list">
+            <!-- Computer Vision -->
+            <li class="tech-list-item">
+              <div class="tech-icon-circle cv-icon">
+                <img src="https://api.iconify.design/lucide:scan-eye.svg?color=%23056b38" alt="Computer Vision" class="brand-svg-icon" />
+              </div>
+              <span class="tech-name">Computer Vision</span>
+            </li>
+            <!-- OCR -->
+            <li class="tech-list-item">
+              <div class="tech-icon-circle ocr-icon">
+                <img src="https://api.iconify.design/lucide:scan-text.svg?color=%230284c7" alt="OCR" class="brand-svg-icon" />
+              </div>
+              <span class="tech-name">OCR</span>
+            </li>
+            <!-- On-Device AI (DeepSeek & Google Gemma) -->
+            <li class="tech-list-item">
+              <div class="tech-icon-circle ai-double-badges" title="DeepSeek & Google Gemma On-Device AI">
+                <img src="https://cdn.simpleicons.org/deepseek/1E88E5" alt="DeepSeek AI" class="brand-svg-icon" />
+                <img src="https://cdn.simpleicons.org/google/4285F4" alt="Google Gemma" class="brand-svg-icon" />
+              </div>
+              <span class="tech-name">On-device AI <small class="tech-sub-tag">DeepSeek</small><small class="tech-sub-tag gemma-tag">Gemma</small></span>
+            </li>
+            <!-- Geospatial Technology -->
+            <li class="tech-list-item">
+              <div class="tech-icon-circle geo-icon">
+                <img src="https://cdn.simpleicons.org/openstreetmap/7EBC6F" alt="Geospatial" class="brand-svg-icon" />
+              </div>
+              <span class="tech-name">Geospatial Technology</span>
+            </li>
+            <!-- Smart Matching Engine -->
+            <li class="tech-list-item">
+              <div class="tech-icon-circle match-icon">
+                <img src="https://api.iconify.design/lucide:cpu.svg?color=%23d97706" alt="Smart Matching" class="brand-svg-icon" />
+              </div>
+              <span class="tech-name">Smart Matching Engine</span>
+            </li>
+            <!-- Privacy-Preserving Systems -->
+            <li class="tech-list-item">
+              <div class="tech-icon-circle priv-icon">
+                <img src="https://api.iconify.design/lucide:shield-check.svg?color=%234f46e5" alt="Privacy Systems" class="brand-svg-icon" />
+              </div>
+              <span class="tech-name">Privacy-Preserving Systems</span>
+            </li>
+          </ul>
+        </div>
+      </article>
+
+      <!-- 8. TECH STACK (Official Online CDN Brand Logos) -->
+      <article class="info-card tech-stack-card">
+        <div class="card-header">
+          <span class="badge badge-green">8</span>
+          <h2 class="card-title">TECH STACK</h2>
+        </div>
+        <div class="card-body">
+          <div class="pills-grid">
+            <!-- React Native -->
+            <div class="pill">
+              <img src="https://cdn.simpleicons.org/react/61DAFB" alt="React Native" class="pill-logo" />
+              <span>React Native</span>
+            </div>
+            <!-- OpenCV -->
+            <div class="pill">
+              <img src="https://cdn.simpleicons.org/opencv/5C3EE8" alt="OpenCV" class="pill-logo" />
+              <span>OpenCV</span>
+            </div>
+            <!-- Expo -->
+            <div class="pill">
+              <img src="https://cdn.simpleicons.org/expo/000020" alt="Expo" class="pill-logo" />
+              <span>Expo</span>
+            </div>
+            <!-- Convex -->
+            <div class="pill">
+              <img src="https://cdn.simpleicons.org/convex/EE342F" alt="Convex" class="pill-logo" />
+              <span>Convex</span>
+            </div>
+            <!-- TypeScript -->
+            <div class="pill">
+              <img src="https://cdn.simpleicons.org/typescript/3178C6" alt="TypeScript" class="pill-logo" />
+              <span>TypeScript</span>
+            </div>
+            <!-- SQLite -->
+            <div class="pill">
+              <img src="https://cdn.simpleicons.org/sqlite/003B57" alt="SQLite" class="pill-logo" />
+              <span>SQLite</span>
+            </div>
+            <!-- VisionCamera -->
+            <div class="pill">
+              <img src="https://api.iconify.design/lucide:camera.svg?color=%23059669" alt="Camera" class="pill-logo" />
+              <span>VisionCamera</span>
+            </div>
+            <!-- MapLibre / OSM -->
+            <div class="pill">
+              <img src="https://cdn.simpleicons.org/maplibre/0284C7" alt="MapLibre" class="pill-logo" />
+              <span>MapLibre / OSM</span>
+            </div>
+            <!-- Google ML Kit / TF Lite -->
+            <div class="pill">
+              <img src="https://cdn.simpleicons.org/tensorflow/FF6F00" alt="TensorFlow" class="pill-logo" />
+              <span>ML Kit / Lite</span>
+            </div>
+            <!-- Expo Notifications -->
+            <div class="pill">
+              <img src="https://api.iconify.design/lucide:bell-ring.svg?color=%23eab308" alt="Notifications" class="pill-logo" />
+              <span>Notifications</span>
+            </div>
+          </div>
+        </div>
+      </article>
+
+    </section>
+
+    <!-- ==================== ROW 4: TEAM PROPONENTS & CITATIONS ==================== -->
+    <section class="team-citations-section">
+      
+      <!-- Project Proponents Card (Seamless Integrated Art & Details) -->
+      <article class="info-card team-card seamless-team-card">
+        <div class="team-card-inner">
+          <div class="team-art-wrap" onclick="triggerPhotoUpload()" title="Click in Edit Mode to upload custom team picture">
+            <img src="assets/team_illustration.jpg" alt="BalikSakay Project Research Team" class="team-seamless-art" id="teamPhotoImg" />
+            <div class="art-gradient-overlay"></div>
+            <span class="academic-chip">CCE 106</span>
+            <input type="file" id="teamPhotoInput" accept="image/*" style="display: none;" onchange="handleTeamPhotoUpload(event)" />
+          </div>
+          <div class="team-info-panel">
+            <div class="card-header mini-header">
+              <span class="badge badge-green">👥</span>
+              <h2 class="card-title">PROJECT PROPONENTS</h2>
+            </div>
+            <div class="team-members-list">
+              <div class="member-row">
+                <span class="member-badge lead">Lead</span>
+                <span class="member-name"><strong>Ryan Deniega</strong> — Full-Stack & System Lead</span>
+              </div>
+              <div class="member-row">
+                <span class="member-badge">Dev</span>
+                <span class="member-name"><strong>Co-Researcher</strong> — Mobile & OCR Integration</span>
+              </div>
+              <div class="member-row">
+                <span class="member-badge">QA</span>
+                <span class="member-name"><strong>Co-Researcher</strong> — Field Testing & UX</span>
+              </div>
+            </div>
+            <div class="team-footer-meta">
+              <span class="adviser-line"><strong>Adviser:</strong> Engr. / Prof. Project Mentor</span>
+              <span class="institution-line">College of Computing Education (CCE)</span>
+            </div>
+          </div>
+        </div>
+      </article>
+
+      <!-- Citations & References Card -->
+      <article class="info-card citations-card seamless-citations-card">
+        <div class="card-header">
+          <span class="badge badge-green">📚</span>
+          <h2 class="card-title">REFERENCES & CITATIONS</h2>
+        </div>
+        <div class="card-body citations-body">
+          <ul class="citations-styled-list">
+            <li class="citation-entry">
+              <span class="cit-num">[1]</span>
+              <span class="cit-text"><strong>City Government of Tagum (2024).</strong> <em>Comprehensive MTOP & Pedicab Regulatory Code.</em> City Transport Office.</span>
+            </li>
+            <li class="citation-entry">
+              <span class="cit-num">[2]</span>
+              <span class="cit-text"><strong>DeepSeek AI & Google Gemma (2024).</strong> <em>On-Device Lightweight Vision & Reasoning Models for Mobile Platforms.</em></span>
+            </li>
+            <li class="citation-entry">
+              <span class="cit-num">[3]</span>
+              <span class="cit-text"><strong>MapLibre / OpenStreetMap (2024).</strong> <em>Offline Vector Tile Mapping for Public Transportation Systems.</em></span>
+            </li>
+            <li class="citation-entry">
+              <span class="cit-num">[4]</span>
+              <span class="cit-text"><strong>National Privacy Commission (2023).</strong> <em>RA 10173 Guidelines on Privacy by Design & Data Minimization for Edge Mobile Transit.</em></span>
+            </li>
+          </ul>
+        </div>
+      </article>
+
+    </section>
+
+    <!-- ==================== FOOTER ==================== -->
+    <footer class="poster-footer">
+      <div class="footer-goal">
+        <div class="goal-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6"><circle cx="12" cy="12" r="10"/><circle cx="12" cy="12" r="6"/><circle cx="12" cy="12" r="2"/></svg>
+        </div>
+        <div class="goal-text">
+          <span class="goal-title">PROJECT GOAL</span>
+          <p class="goal-desc">
+            To turn an ordinary street-hailed ride into a searchable digital ride record using computer vision and mobile technology.
+          </p>
+        </div>
+      </div>
+
+      <div class="footer-divider"></div>
+
+      <div class="footer-slogan">
+        <p class="slogan-main">
+          <span class="slogan-brand">TalaRide</span> — Remember every ride.
+        </p>
+        <p class="slogan-sub">
+          Your ride may be informal. Your record doesn't have to be.
+        </p>
+      </div>
+    </footer>
+
+  </main>
+
+  <script src="script.js"></script>
+</body>
+</html>
