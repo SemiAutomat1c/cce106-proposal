@@ -292,11 +292,17 @@ body.edit-mode [contenteditable="true"]:focus {
   margin-bottom: 0px;
 }
 
+.talaride-logo-wrapper {
+  display: flex;
+  align-items: center;
+}
+
 .talaride-header-logo {
-  max-height: 56px;
+  max-height: 70px;
   width: auto;
   object-fit: contain;
   display: block;
+  transform: translateX(8px);
 }
 
 .logo-dark {
