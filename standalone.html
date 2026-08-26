@@ -2465,11 +2465,13 @@ const posterRoot = document.getElementById('posterRoot');
 const toggleEditBtn = document.getElementById('toggleEditBtn');
 const editBtnText = document.getElementById('editBtnText');
 
-const STORAGE_KEY = 'talaride_poster_draft_v2';
+const STORAGE_KEY = 'talaride_poster_draft_v3';
 
-// Clear legacy BalikSakay draft so new TalaRide template displays immediately
+// Clear legacy drafts so latest TalaRide template displays immediately
 try {
+  localStorage.removeItem('talaride_poster_draft_v2');
   localStorage.removeItem('balikSakayPosterDraft_v1');
+  localStorage.removeItem('balikSakayPosterDraft');
 } catch (e) {}
 
 // Check if a saved draft exists
