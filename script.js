@@ -40,8 +40,8 @@ function toggleEditMode() {
     '.step-name', '.step-desc', '.rc-number', '.rc-location',
     '.rc-details span', '.rc-street span', '.ocr-digits',
     '.ocr-sub', '.sp-bold-num', '.sp-bold-num-sm', '.hi-num', '.hi-date',
-    '.member-name', '.member-badge', '.adviser-line', '.institution-line',
-    '.academic-chip', '.cit-num', '.cit-text', '.citation-entry'
+    '.member-badge-name', '.member-name-label', '.team-meta-tag', '.team-footer-hint',
+    '.cit-num', '.cit-text', '.citation-entry'
   ];
 
   const elements = posterRoot.querySelectorAll(editableSelectors.join(', '));
@@ -55,7 +55,7 @@ function toggleEditMode() {
 
   if (isEditMode) {
     editBtnText.textContent = 'Exit Edit Mode';
-    showToast('✏️ Edit Mode ON: Click any text or upload team photo!');
+    showToast('✏️ Edit Mode ON: Click any text or member avatar to upload photo!');
   } else {
     editBtnText.textContent = 'Enable Edit Mode';
     showToast('Edit Mode OFF. Changes retained in session.');
@@ -63,20 +63,20 @@ function toggleEditMode() {
 }
 
 /**
- * Image upload handlers for team photo
+ * Image upload handlers for individual member photos
  */
-function triggerPhotoUpload() {
-  const fileInput = document.getElementById('teamPhotoInput');
+function triggerMemberUpload(memberIndex) {
+  const fileInput = document.getElementById(`memberInput${memberIndex}`);
   if (fileInput) fileInput.click();
 }
 
-function handleTeamPhotoUpload(event) {
+function handleMemberUpload(event, memberIndex) {
   const file = event.target.files[0];
   if (file) {
     const reader = new FileReader();
     reader.onload = function(e) {
-      const img = document.getElementById('teamPhotoImg');
-      const placeholder = document.getElementById('teamPlaceholder');
+      const img = document.getElementById(`memberImg${memberIndex}`);
+      const placeholder = img ? img.parentElement.querySelector('.placeholder-silhouette-svg') : null;
       if (img) {
         img.src = e.target.result;
         img.style.display = 'block';
@@ -84,7 +84,7 @@ function handleTeamPhotoUpload(event) {
       if (placeholder) {
         placeholder.style.display = 'none';
       }
-      showToast('📸 Team group photo updated! Click "Save Draft" to keep it.');
+      showToast(`📸 Member ${memberIndex} photo updated! Click "Save Draft" to keep it.`);
     };
     reader.readAsDataURL(file);
   }

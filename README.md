@@ -49,6 +49,10 @@ High-fidelity, pixel-crisp 1-Page A4 HTML/CSS infographic poster and interactive
 
 ---
 
-## 👥 Project Proponents
-* **Lead Proponent**: Ryan Deniega — Full-Stack & System Lead
-* **Course**: CCE 106 — College of Computing Education (CCE)
+## 👥 Project Proponents (CCE 106)
+* **Ryan Deniega**
+* **Kyndel Roy Suarez**
+* **Domice Aseberos**
+* **Anjelo Vidal**
+
+**Institution**: College of Computing Education (CCE) — UMTC
