@@ -1,0 +1,22 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 560 110" width="560" height="110">
+  <defs>
+    <linearGradient id="rsGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#1D4ED8" />
+      <stop offset="100%" stop-color="#0EA5E9" />
+    </linearGradient>
+  </defs>
+  
+  <!-- Icon Symbol: Stylized Route Node with Radar Pulse -->
+  <g transform="translate(5, 10)">
+    <rect x="0" y="0" width="54" height="54" rx="14" fill="url(#rsGrad)" />
+    <circle cx="27" cy="27" r="6" fill="#ffffff" />
+    <path d="M 16 27 A 11 11 0 0 1 38 27" fill="none" stroke="#ffffff" stroke-width="2.6" stroke-linecap="round" opacity="0.9" />
+    <path d="M 10 27 A 17 17 0 0 1 44 27" fill="none" stroke="#ffffff" stroke-width="2.4" stroke-linecap="round" opacity="0.6" />
+  </g>
+  
+  <!-- Wordmark -->
+  <text x="72" y="50" font-family="'Plus Jakarta Sans', 'Inter', -apple-system, sans-serif" font-size="42" font-weight="900" fill="#0F172A" letter-spacing="-0.5">Route<tspan fill="url(#rsGrad)">Sense</tspan></text>
+  
+  <!-- Tagline -->
+  <text x="74" y="74" font-family="'Plus Jakarta Sans', 'Inter', -apple-system, sans-serif" font-size="14" font-weight="700" fill="#2563EB" letter-spacing="0.1">Know where rides are. Know when they’re available.</text>
+</svg>

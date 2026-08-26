@@ -1,0 +1,654 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>RouteSense — Mobility Intelligence Infographic Poster</title>
+  
+  <!-- Modern Typography: Plus Jakarta Sans & Inter -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800;900&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@500;700;800&display=swap" rel="stylesheet" />
+  
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+  <!-- Floating Editor Toolbar (Hidden during Print/PDF export) -->
+  <aside class="editor-toolbar" id="editorToolbar">
+    <div class="toolbar-pill">
+      <span class="status-indicator live-pulse"></span>
+      <span class="toolbar-brand">RouteSense Poster Editor</span>
+    </div>
+    <div class="toolbar-actions">
+      <button class="btn btn-secondary" id="btnToggleEdit" title="Toggle inline content editing (Cmd+E)">
+        <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2"><path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"/><path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z"/></svg>
+        <span id="editBtnLabel">Enable Edit Mode</span>
+      </button>
+      <button class="btn btn-primary" id="btnPrint" title="Print or save as 1-page A4 PDF (Cmd+P)">
+        <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 6 2 18 2 18 9"/><path d="M6 18H4a2 2 0 0 1-2-2v-5a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2h-2"/><rect x="6" y="14" width="12" height="8"/></svg>
+        <span>Print / Save PDF</span>
+      </button>
+      <button class="btn btn-dark" id="btnSaveDraft" title="Save customizations locally (Cmd+S)">
+        <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2"><path d="M19 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11l5 5v11a2 2 0 0 1-2 2z"/><polyline points="17 21 17 13 7 13 7 21"/><polyline points="7 3 7 8 15 8"/></svg>
+        <span>Save Draft</span>
+      </button>
+      <button class="btn btn-outline" id="btnReset" title="Reset to default proposal text">
+        <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2"><polyline points="1 4 1 10 7 10"/><path d="M3.51 15a9 9 0 1 0 2.13-9.36L1 10"/></svg>
+        <span>Reset</span>
+      </button>
+    </div>
+  </aside>
+
+  <!-- Main Infographic Poster Canvas (Calibrated for exact 1-page A4) -->
+  <main class="poster" id="posterRoot">
+
+    <!-- ==================== HEADER SECTION ==================== -->
+    <header class="poster-header">
+      <div class="header-left">
+        <!-- RouteSense Logo & Tagline -->
+        <div class="logo-wrapper routesense-logo-wrapper">
+          <img src="assets/routesense_brand_header.png" alt="RouteSense - Know where rides are. Know when they’re available." class="routesense-header-logo" />
+        </div>
+
+        <!-- Description -->
+        <p class="header-desc">
+          A Smartphone-Powered Mobility Intelligence System for Informal Public Transportation.
+        </p>
+
+        <!-- Quick Value Highlights Bar -->
+        <div class="header-highlights">
+          <span class="hh-chip"><img src="https://api.iconify.design/lucide:activity.svg?color=%231D4ED8" alt="" class="hh-icon" /> Smartphone Sensor Fusion</span>
+          <span class="hh-chip"><img src="https://api.iconify.design/lucide:zap.svg?color=%231D4ED8" alt="" class="hh-icon" /> Zero Hardware / No Driver App</span>
+          <span class="hh-chip"><img src="https://api.iconify.design/lucide:shield-check.svg?color=%231D4ED8" alt="" class="hh-icon" /> Privacy by Design & Aggregation</span>
+        </div>
+      </div>
+
+      <div class="header-right hero-mesh-section">
+        <div class="hero-mesh-wrap">
+          <img src="assets/routesense_hero_mesh_clean.jpg" alt="Transportation Mobility Intelligence Mesh" class="hero-mesh-img" />
+          <div class="mesh-floating-tag">MOBILITY INTELLIGENCE CORRIDOR</div>
+        </div>
+      </div>
+    </header>
+
+    <!-- ==================== ROW 1: PROBLEM / BENEFICIARIES / SOLUTION ==================== -->
+    <section class="grid-3-col top-cards-section">
+      
+      <!-- 1. THE PROBLEM -->
+      <article class="info-card problem-card">
+        <div class="card-header">
+          <span class="badge badge-blue">1</span>
+          <h2 class="card-title">THE PROBLEM</h2>
+        </div>
+        <div class="card-body">
+          <p class="text-sm">
+            Knowing a transport route does not mean knowing whether a ride is actually available. Informal transit changes with time, demand, traffic, and weather.
+          </p>
+          <div class="problem-questions-box">
+            <div class="pq-item">❓ <em>“Can I actually get a ride here right now?”</em></div>
+            <div class="pq-item">📍 <em>“Where is the better place to wait?”</em></div>
+            <div class="pq-item">⏱️ <em>“How reliable is transport at this hour?”</em></div>
+            <div class="pq-item">📶 <em>“Will I still have mobile signal during the trip?”</em></div>
+          </div>
+          <p class="text-xs sub-alert">
+            Existing static route maps cannot answer these dynamic real-world conditions.
+          </p>
+        </div>
+      </article>
+
+      <!-- 2. BENEFICIARIES -->
+      <article class="info-card beneficiaries-card">
+        <div class="card-header">
+          <span class="badge badge-blue">2</span>
+          <h2 class="card-title">BENEFICIARIES</h2>
+        </div>
+        <div class="card-body">
+          <!-- Primary -->
+          <div class="beneficiary-group">
+            <h3 class="group-label">Primary Users:</h3>
+            <p class="text-xs group-desc">
+              Students, daily commuters, night workers, delivery & gig-economy workers.
+            </p>
+            <div class="icon-row">
+              <div class="icon-bubble" title="Students">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="12" cy="7" r="3.5"/><path d="M5 20v-2a7 7 0 0 1 14 0v2"/><path d="M12 2 L6 5 L12 8 L18 5 Z"/></svg>
+              </div>
+              <div class="icon-bubble" title="Night Commuters">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="12" cy="7" r="3.5"/><path d="M5 20v-2a7 7 0 0 1 14 0v2"/><path d="M12 3a9 9 0 1 0 9 9c0-.46-.04-.92-.1-1.36a5.389 5.389 0 0 1-4.4 2.26 5.403 5.403 0 0 1-3.14-9.8c-.44-.06-.9-.1-1.36-.1z"/></svg>
+              </div>
+              <div class="icon-bubble" title="Gig Workers">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="12" cy="7" r="3.5"/><path d="M5 20v-2a7 7 0 0 1 14 0v2"/><rect x="8" y="13.5" width="8" height="5" rx="1"/></svg>
+              </div>
+              <div class="icon-bubble" title="Daily Commuters">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="12" cy="7.5" r="3.5"/><path d="M5 20v-2a7 7 0 0 1 14 0v2"/><path d="M6 6h12l-2-2.5H8z"/></svg>
+              </div>
+            </div>
+          </div>
+
+          <div class="divider-dotted"></div>
+
+          <!-- Secondary -->
+          <div class="beneficiary-group">
+            <h3 class="group-label">Secondary Beneficiaries:</h3>
+            <p class="text-xs group-desc">
+              Transport coops, schools, LGUs, researchers, & telco mobility planners.
+            </p>
+            <div class="icon-row secondary-row">
+              <div class="icon-bubble-sm" title="Transport Coops"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="3" y="4" width="18" height="14" rx="2"/><path d="M8 20v2M16 20v2M7 10h10M7 14h4"/></svg></div>
+              <div class="icon-bubble-sm" title="LGUs & Planners"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg></div>
+              <div class="icon-bubble-sm" title="Academic Institutions"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M22 10v6M2 10l10-5 10 5-10 5z"/><path d="M6 12v5c3 3 9 3 12 0v-5"/></svg></div>
+              <div class="icon-bubble-sm" title="Telco Planners"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M18 10h-1.26A8 8 0 1 0 9 20h9a5 5 0 0 0 0-10z"/></svg></div>
+            </div>
+          </div>
+        </div>
+      </article>
+
+      <!-- 3. THE SOLUTION -->
+      <article class="info-card solution-card">
+        <div class="card-header">
+          <span class="badge badge-blue">3</span>
+          <h2 class="card-title">THE SOLUTION</h2>
+        </div>
+        <div class="card-body">
+          <p class="text-sm">
+            RouteSense uses sensors inside passengers' phones to learn how informal transit behaves over time through two intelligence layers:
+          </p>
+          
+          <div class="dual-layers-box">
+            <div class="layer-pill layer-stopsense">
+              <span class="layer-dot blue-dot"></span>
+              <div>
+                <strong>StopSense:</strong> Learns pickup areas, movement patterns, & service availability.
+              </div>
+            </div>
+            <div class="layer-pill layer-signaltrail">
+              <span class="layer-dot cyan-dot"></span>
+              <div>
+                <strong>SignalTrail:</strong> Measures cellular signal quality along transit corridors.
+              </div>
+            </div>
+          </div>
+
+          <!-- Phone Mockup -->
+          <div class="solution-phone-wrapper">
+            <div class="mockup-phone">
+              <div class="mp-notch"></div>
+              <div class="mp-screen">
+                <div class="mp-header">
+                  <span class="mp-badge">⚡ STOPSENSE LIVE</span>
+                  <span class="mp-time">8:30 PM</span>
+                </div>
+                <div class="mp-metric-box">
+                  <div class="mp-label">SERVICE PROBABILITY</div>
+                  <div class="mp-val-row">
+                    <span class="mp-huge-num">88%</span>
+                    <span class="mp-status-tag">HIGH</span>
+                  </div>
+                  <div class="mp-window">Typical Opportunity: <strong>3–6 min</strong></div>
+                </div>
+                <div class="mp-signal-bar">
+                  <span>SignalTrail:</span>
+                  <span class="signal-dots">🟢 🟢 🟢 ⚪ <em>Very Good</em></span>
+                </div>
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </article>
+
+    </section>
+
+    <!-- ==================== SECTION 4: 7-STAGE HOW IT WORKS WORKFLOW ==================== -->
+    <section class="workflow-section">
+      <div class="section-title-row">
+        <span class="badge badge-blue">4</span>
+        <h2 class="workflow-heading">HOW IT WORKS — SMARTPHONE MOBILITY SENSING PIPELINE</h2>
+      </div>
+
+      <div class="workflow-steps-7">
+        
+        <!-- Step 1 -->
+        <div class="step-card-7">
+          <div class="step-badge-row">
+            <span class="step-circle-blue">01</span>
+            <span class="step-name-7">Opt In</span>
+          </div>
+          <p class="step-desc-7">Commuter voluntarily enables passive sensing.</p>
+          <div class="step-svg-icon">
+            <img src="https://api.iconify.design/lucide:smartphone.svg?color=%231D4ED8" alt="" class="wf-icon-img" />
+          </div>
+        </div>
+
+        <div class="wf-arrow-sm">→</div>
+
+        <!-- Step 2 -->
+        <div class="step-card-7">
+          <div class="step-badge-row">
+            <span class="step-circle-blue">02</span>
+            <span class="step-name-7">Sense Motion</span>
+          </div>
+          <p class="step-desc-7">Detects walking, waiting, or vehicle motion.</p>
+          <div class="step-svg-icon">
+            <img src="https://api.iconify.design/lucide:footprints.svg?color=%231D4ED8" alt="" class="wf-icon-img" />
+          </div>
+        </div>
+
+        <div class="wf-arrow-sm">→</div>
+
+        <!-- Step 3 -->
+        <div class="step-card-7">
+          <div class="step-badge-row">
+            <span class="step-circle-blue">03</span>
+            <span class="step-name-7">Context</span>
+          </div>
+          <p class="step-desc-7">GNSS, gyro, accel, and cellular signal logs.</p>
+          <div class="step-svg-icon">
+            <img src="https://api.iconify.design/lucide:radio.svg?color=%231D4ED8" alt="" class="wf-icon-img" />
+          </div>
+        </div>
+
+        <div class="wf-arrow-sm">→</div>
+
+        <!-- Step 4 -->
+        <div class="step-card-7">
+          <div class="step-badge-row">
+            <span class="step-circle-blue">04</span>
+            <span class="step-name-7">On-Device AI</span>
+          </div>
+          <p class="step-desc-7">Estimates boarding stops & corridor patterns.</p>
+          <div class="step-svg-icon">
+            <img src="https://api.iconify.design/lucide:cpu.svg?color=%231D4ED8" alt="" class="wf-icon-img" />
+          </div>
+        </div>
+
+        <div class="wf-arrow-sm">→</div>
+
+        <!-- Step 5 -->
+        <div class="step-card-7">
+          <div class="step-badge-row">
+            <span class="step-circle-blue">05</span>
+            <span class="step-name-7">Privacy</span>
+          </div>
+          <p class="step-desc-7">Minimizes and aggregates raw movement data.</p>
+          <div class="step-svg-icon">
+            <img src="https://api.iconify.design/lucide:shield-check.svg?color=%231D4ED8" alt="" class="wf-icon-img" />
+          </div>
+        </div>
+
+        <div class="wf-arrow-sm">→</div>
+
+        <!-- Step 6 -->
+        <div class="step-card-7">
+          <div class="step-badge-row">
+            <span class="step-circle-blue">06</span>
+            <span class="step-name-7">Intelligence</span>
+          </div>
+          <p class="step-desc-7">Builds crowdsourced transit reliability models.</p>
+          <div class="step-svg-icon">
+            <img src="https://api.iconify.design/lucide:network.svg?color=%231D4ED8" alt="" class="wf-icon-img" />
+          </div>
+        </div>
+
+        <div class="wf-arrow-sm">→</div>
+
+        <!-- Step 7 -->
+        <div class="step-card-7 active-step-7">
+          <div class="step-badge-row">
+            <span class="step-circle-blue">07</span>
+            <span class="step-name-7">Recommend</span>
+          </div>
+          <p class="step-desc-7">Suggests optimal pickup areas & live timing.</p>
+          <div class="step-svg-icon">
+            <img src="https://api.iconify.design/lucide:compass.svg?color=%231D4ED8" alt="" class="wf-icon-img" />
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- ==================== SECTION 5: LIVE RECOMMENDATION & DECISION SHOWCASE ==================== -->
+    <section class="decision-showcase-section">
+      <div class="showcase-container">
+        
+        <!-- Left Showcase Info -->
+        <div class="showcase-left">
+          <div class="showcase-header">
+            <span class="badge badge-amber">5</span>
+            <h2 class="showcase-heading">MOBILITY DECISION ENGINE</h2>
+          </div>
+          <p class="showcase-scenario">
+            <span class="scenario-tag">REAL-WORLD COMMUTER QUERY</span><br/>
+            <strong>“Going to Visayan Village — 8:30 PM”</strong>
+          </p>
+          <p class="showcase-desc">
+            RouteSense contrasts real-time availability, waiting range, confidence, and connectivity so commuters make informed choices.
+          </p>
+          <div class="showcase-highlights">
+            <span class="sh-pill">⚡ Dynamic Opportunity Windows</span>
+            <span class="sh-pill">📶 Signal-Aware Transit Choices</span>
+          </div>
+        </div>
+
+        <!-- Right Decision Comparison Cards -->
+        <div class="showcase-cards-wrap">
+          
+          <!-- OPTION A -->
+          <div class="option-card option-a">
+            <div class="option-header">
+              <span class="opt-badge">OPTION A</span>
+              <span class="opt-location">Main Pickup Area</span>
+              <span class="opt-tag tag-fastest">⚡ FASTEST CHOICE</span>
+            </div>
+            <div class="opt-body">
+              <div class="opt-stat-grid">
+                <div class="opt-stat">
+                  <span class="os-label">Service Probability</span>
+                  <span class="os-val highlight-blue">88%</span>
+                </div>
+                <div class="opt-stat">
+                  <span class="os-label">Typical Opportunity</span>
+                  <span class="os-val">3–6 min</span>
+                </div>
+                <div class="opt-stat">
+                  <span class="os-label">Confidence</span>
+                  <span class="os-val badge-conf">High (31 obs)</span>
+                </div>
+                <div class="opt-stat">
+                  <span class="os-label">SignalTrail</span>
+                  <span class="os-val">Moderate</span>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- OPTION B -->
+          <div class="option-card option-b">
+            <div class="option-header">
+              <span class="opt-badge">OPTION B</span>
+              <span class="opt-location">Alternate Pickup Area</span>
+              <span class="opt-tag tag-connected">📶 BEST CONNECTED</span>
+            </div>
+            <div class="opt-body">
+              <div class="opt-stat-grid">
+                <div class="opt-stat">
+                  <span class="os-label">Service Probability</span>
+                  <span class="os-val highlight-cyan">74%</span>
+                </div>
+                <div class="opt-stat">
+                  <span class="os-label">Typical Opportunity</span>
+                  <span class="os-val">6–10 min</span>
+                </div>
+                <div class="opt-stat">
+                  <span class="os-label">Confidence</span>
+                  <span class="os-val badge-conf">Moderate</span>
+                </div>
+                <div class="opt-stat">
+                  <span class="os-label">SignalTrail</span>
+                  <span class="os-val text-green">Very Good</span>
+                </div>
+              </div>
+            </div>
+          </div>
+
+        </div>
+
+      </div>
+    </section>
+
+    <!-- ==================== ROW 4: KEY FEATURES / EMERGING TECH / TECH STACK ==================== -->
+    <section class="grid-3-col tech-features-section">
+      
+      <!-- 6. KEY FEATURES -->
+      <article class="info-card features-card">
+        <div class="card-header">
+          <span class="badge badge-blue">6</span>
+          <h2 class="card-title">KEY FEATURES</h2>
+        </div>
+        <div class="card-body">
+          <div class="features-grid-3x3">
+            <div class="feat-box">
+              <div class="feat-icon-wrap"><img src="https://api.iconify.design/lucide:bar-chart-3.svg?color=%231D4ED8" alt="" class="feat-svg" /></div>
+              <span class="feat-name">Service Probability</span>
+            </div>
+            <div class="feat-box">
+              <div class="feat-icon-wrap"><img src="https://api.iconify.design/lucide:map-pin.svg?color=%231D4ED8" alt="" class="feat-svg" /></div>
+              <span class="feat-name">Smart Pickup Areas</span>
+            </div>
+            <div class="feat-box">
+              <div class="feat-icon-wrap"><img src="https://api.iconify.design/lucide:clock.svg?color=%231D4ED8" alt="" class="feat-svg" /></div>
+              <span class="feat-name">Opportunity Window</span>
+            </div>
+            <div class="feat-box">
+              <div class="feat-icon-wrap"><img src="https://api.iconify.design/lucide:calendar.svg?color=%231D4ED8" alt="" class="feat-svg" /></div>
+              <span class="feat-name">Time-Based Mobility</span>
+            </div>
+            <div class="feat-box">
+              <div class="feat-icon-wrap"><img src="https://api.iconify.design/lucide:sparkles.svg?color=%231D4ED8" alt="" class="feat-svg" /></div>
+              <span class="feat-name">Confidence & Freshness</span>
+            </div>
+            <div class="feat-box">
+              <div class="feat-icon-wrap"><img src="https://api.iconify.design/lucide:wifi.svg?color=%231D4ED8" alt="" class="feat-svg" /></div>
+              <span class="feat-name">Signal-Aware Routes</span>
+            </div>
+            <div class="feat-box">
+              <div class="feat-icon-wrap"><img src="https://api.iconify.design/lucide:route.svg?color=%231D4ED8" alt="" class="feat-svg" /></div>
+              <span class="feat-name">Route Discovery</span>
+            </div>
+            <div class="feat-box">
+              <div class="feat-icon-wrap"><img src="https://api.iconify.design/lucide:database.svg?color=%231D4ED8" alt="" class="feat-svg" /></div>
+              <span class="feat-name">Offline Cached Data</span>
+            </div>
+            <div class="feat-box">
+              <div class="feat-icon-wrap"><img src="https://api.iconify.design/lucide:shield-check.svg?color=%231D4ED8" alt="" class="feat-svg" /></div>
+              <span class="feat-name">No Driver App</span>
+            </div>
+          </div>
+        </div>
+      </article>
+
+      <!-- 7. EMERGING TECHNOLOGIES & SENSORS -->
+      <article class="info-card emerging-card">
+        <div class="card-header">
+          <span class="badge badge-blue">7</span>
+          <h2 class="card-title">EMERGING TECHNOLOGIES</h2>
+        </div>
+        <div class="card-body">
+          <ul class="emerging-list">
+            <li class="emerging-item">
+              <span class="em-icon">🔄</span>
+              <span class="em-text"><strong>Smartphone Sensor Fusion:</strong> Accel + Gyro + GNSS.</span>
+            </li>
+            <li class="emerging-item">
+              <span class="em-icon">🚶</span>
+              <span class="em-text"><strong>Activity Recognition:</strong> Walk → Wait → Vehicle.</span>
+            </li>
+            <li class="emerging-item">
+              <span class="em-icon">📶</span>
+              <span class="em-text"><strong>Cellular Signal Intelligence:</strong> Network corridor maps.</span>
+            </li>
+            <li class="emerging-item">
+              <span class="em-icon">🧠</span>
+              <span class="em-text"><strong>On-Device Inference & Privacy Aggregation.</strong></span>
+            </li>
+            <li class="emerging-item">
+              <span class="em-icon">🌐</span>
+              <span class="em-text"><strong>Geospatial Clustering:</strong> PostGIS + H3 Hexagonal Grid.</span>
+            </li>
+          </ul>
+
+          <!-- Hardware Sensor Tags -->
+          <div class="sensor-hardware-bar">
+            <span class="hw-chip">GPS/GNSS</span>
+            <span class="hw-chip">Accelerometer</span>
+            <span class="hw-chip">Gyroscope</span>
+            <span class="hw-chip">Cellular Modem</span>
+            <span class="hw-chip">Magnetometer</span>
+          </div>
+        </div>
+      </article>
+
+      <!-- 8. TECH STACK -->
+      <article class="info-card techstack-card">
+        <div class="card-header">
+          <span class="badge badge-blue">8</span>
+          <h2 class="card-title">TECH STACK</h2>
+        </div>
+        <div class="card-body">
+          <div class="tech-pills-grid">
+            <div class="tech-pill">
+              <img src="https://cdn.simpleicons.org/react/61DAFB" alt="" class="pill-logo" />
+              <span>React Native</span>
+            </div>
+            <div class="tech-pill">
+              <img src="https://cdn.simpleicons.org/kotlin/7F52FF" alt="" class="pill-logo" />
+              <span>Kotlin Sensor Layer</span>
+            </div>
+            <div class="tech-pill">
+              <img src="https://cdn.simpleicons.org/typescript/3178C6" alt="" class="pill-logo" />
+              <span>TypeScript</span>
+            </div>
+            <div class="tech-pill">
+              <img src="https://cdn.simpleicons.org/sqlite/003B57" alt="" class="pill-logo" />
+              <span>SQLite</span>
+            </div>
+            <div class="tech-pill">
+              <img src="https://cdn.simpleicons.org/openstreetmap/7EBC6F" alt="" class="pill-logo" />
+              <span>MapLibre / OSM</span>
+            </div>
+            <div class="tech-pill">
+              <img src="https://cdn.simpleicons.org/supabase/3ECF8E" alt="" class="pill-logo" />
+              <span>Supabase / Postgres</span>
+            </div>
+            <div class="tech-pill">
+              <img src="https://cdn.simpleicons.org/postgresql/4169E1" alt="" class="pill-logo" />
+              <span>PostGIS + Uber H3</span>
+            </div>
+            <div class="tech-pill">
+              <img src="https://cdn.simpleicons.org/python/3776AB" alt="" class="pill-logo" />
+              <span>Python / Pandas</span>
+            </div>
+            <div class="tech-pill">
+              <img src="https://cdn.simpleicons.org/apache/D22128" alt="" class="pill-logo" />
+              <span>XGBoost / SciKit</span>
+            </div>
+          </div>
+        </div>
+      </article>
+
+    </section>
+
+    <!-- ==================== ROW 5: TEAM & REFERENCES ==================== -->
+    <section class="team-citations-section">
+      
+      <!-- Project Proponents (Wide Seamless Card) -->
+      <article class="info-card seamless-team-card">
+        <div class="team-card-inner">
+          <div class="team-art-wrap" title="Click to change team photo">
+            <img src="assets/routesense_team.jpg" alt="RouteSense Research Team" class="team-seamless-art" id="teamPhotoImg" />
+            <input type="file" id="teamPhotoInput" accept="image/*" style="display: none;" />
+            <div class="art-gradient-overlay"></div>
+            <span class="academic-chip">CCE 106</span>
+          </div>
+
+          <div class="team-info-panel">
+            <div class="card-header mini-header">
+              <div class="team-header-title">
+                <span class="team-icon">👥</span>
+                <h2 class="card-title">PROJECT PROPONENTS</h2>
+              </div>
+            </div>
+            
+            <div class="team-members-list">
+              <div class="team-member-row">
+                <span class="member-role-badge lead-badge">LEAD</span>
+                <span class="member-name"><strong>Ryan Christian Deniega</strong> — Full-Stack & System Architect</span>
+              </div>
+              <div class="team-member-row">
+                <span class="member-role-badge dev-badge">DEV</span>
+                <span class="member-name"><strong>Domince Aseberos</strong> — Sensor Layer & Android Integration</span>
+              </div>
+              <div class="team-member-row">
+                <span class="member-role-badge dev-badge">DEV</span>
+                <span class="member-name"><strong>Kyndel Roy Suarez</strong> — Geospatial & PostGIS Pipeline</span>
+              </div>
+              <div class="team-member-row">
+                <span class="member-role-badge qa-badge">QA</span>
+                <span class="member-name"><strong>Anjelo Vidal</strong> — Field Testing & ML Modeling</span>
+              </div>
+            </div>
+
+            <div class="adviser-row">
+              <span class="adviser-label">Course:</span>
+              <span class="adviser-name"><strong>Application Development & Emerging Technologies</strong> (CCE)</span>
+            </div>
+          </div>
+        </div>
+      </article>
+
+      <!-- References & Citations -->
+      <article class="info-card citations-card">
+        <div class="card-header mini-header">
+          <span class="cite-icon">📚</span>
+          <h2 class="card-title">REFERENCES & CITATIONS</h2>
+        </div>
+        <div class="card-body citations-body">
+          <ul class="citations-list">
+            <li class="citation-entry">
+              <span class="cit-num">[1]</span>
+              <span class="cit-text"><strong>City Government of Tagum.</strong> <em>City Ordinance No. 984, S. 2021 — Local Public Transport Route Plan.</em></span>
+            </li>
+            <li class="citation-entry">
+              <span class="cit-num">[2]</span>
+              <span class="cit-text"><strong>Android Developers.</strong> <em>Activity Recognition Transition API & GnssMeasurement API.</em></span>
+            </li>
+            <li class="citation-entry">
+              <span class="cit-num">[3]</span>
+              <span class="cit-text"><strong>Android Developers.</strong> <em>TelephonyCallback.SignalStrengthsListener for Network Monitoring.</em></span>
+            </li>
+            <li class="citation-entry">
+              <span class="cit-num">[4]</span>
+              <span class="cit-text"><strong>Behrens et al. (2025).</strong> <em>Spatial & Temporal Variability in Informal Public Transport using GPS.</em></span>
+            </li>
+            <li class="citation-entry">
+              <span class="cit-num">[5]</span>
+              <span class="cit-text"><strong>Travel Behaviour & Society (2025).</strong> <em>Passenger Smartphone Sensing for Transit Dynamics.</em></span>
+            </li>
+          </ul>
+        </div>
+      </article>
+
+    </section>
+
+    <!-- ==================== FOOTER ==================== -->
+    <footer class="poster-footer">
+      <div class="footer-goal">
+        <div class="goal-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6"><circle cx="12" cy="12" r="10"/><circle cx="12" cy="12" r="6"/><circle cx="12" cy="12" r="2"/></svg>
+        </div>
+        <div class="goal-text">
+          <span class="goal-title">PROJECT CORE PRINCIPLE</span>
+          <p class="goal-desc">
+            A commuter may memorize a route, but they cannot memorize changing transit conditions. RouteSense continuously learns informal transit behavior.
+          </p>
+        </div>
+      </div>
+
+      <div class="footer-divider"></div>
+
+      <div class="footer-slogan">
+        <p class="slogan-main">
+          <span class="slogan-brand">RouteSense</span> — Know where rides are. Know when they’re available.
+        </p>
+        <p class="slogan-sub">
+          Dynamic smartphone mobility intelligence for everyday informal transit.
+        </p>
+      </div>
+    </footer>
+
+  </main>
+
+  <script src="script.js"></script>
+</body>
+</html>
