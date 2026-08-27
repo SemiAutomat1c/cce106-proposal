@@ -13,23 +13,23 @@
   <style>
 /* ==========================================================================
    RouteSense Infographic Poster Stylesheet
-   TRUE A4 DIMENSIONS — 794px × 1123px at 96dpi (210mm × 297mm)
-   Zero scaling when printing = text stays readable on paper
+   APPROACH A: 4-ROW HIGH SPACE UTILIZATION & CRISP LEGIBILITY
+   Calibrated for Exact 1-Page A4 Portrait (794px x 1123px @ 96 DPI / 210mm x 297mm)
    ========================================================================== */
 
 @import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800;900&family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@500;700;800&display=swap');
 
 :root {
-  --bg-poster: #EDECE6;
-  --color-green: #0C4E2B;
-  --color-green-bright: #15803D;
-  --color-green-lime: #22C55E;
-  --color-navy: #0A1924;
-  --color-text: #0F172A;
-  --color-text-mid: #334155;
-  --color-text-light: #475569;
-  --color-white: #FFFFFF;
-  --color-border: #D1CFCA;
+  --bg-poster: #EDECE6;          /* Soft Warm Sand Paper */
+  --color-green: #0C4E2B;        /* Forest Emerald Green */
+  --color-green-bright: #15803D; /* Signal Green */
+  --color-green-lime: #22C55E;   /* Fluorescent Accent Green */
+  --color-navy: #0A1924;        /* Deep Obsidian Navy */
+  --color-text: #0F172A;        /* Main Body Text (Dark Slate) */
+  --color-text-mid: #334155;     /* Slate 700 for high readability */
+  --color-text-light: #475569;   /* Secondary Text */
+  --color-white: #FFFFFF;        /* Clean Paper White */
+  --color-border: #D1CFCA;       /* Crisp Border */
   --color-border-dark: #1E293B;
 
   --ff-heading: 'Plus Jakarta Sans', system-ui, sans-serif;
@@ -38,27 +38,33 @@
 
   --r-sm: 4px;
   --r-md: 6px;
+  --r-full: 9999px;
 }
 
-*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
 
 html {
   -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
   background: #94A3B8;
 }
 
 body {
   font-family: var(--ff-body);
   color: var(--color-text);
-  line-height: 1.35;
+  line-height: 1.32;
   display: flex;
   flex-direction: column;
   align-items: center;
-  padding: 20px 12px 40px;
+  padding: 16px 12px 32px;
 }
 
 /* ==========================================================================
-   Toolbar (hidden during print)
+   Toolbar (Editor controls, hidden during print)
    ========================================================================== */
 .editor-toolbar {
   position: sticky;
@@ -71,41 +77,50 @@ body {
   max-width: 794px;
   background: rgba(10, 25, 36, 0.95);
   backdrop-filter: blur(12px);
-  border: 1px solid rgba(255,255,255,0.12);
-  border-radius: 999px;
-  padding: 6px 14px;
-  margin-bottom: 14px;
-  box-shadow: 0 8px 24px rgba(0,0,0,0.18);
-  color: #fff;
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  border-radius: var(--r-full);
+  padding: 5px 12px;
+  margin-bottom: 12px;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.2);
+  color: #ffffff;
 }
+
 .toolbar-pill { display: flex; align-items: center; gap: 8px; }
 .status-indicator { width: 8px; height: 8px; border-radius: 50%; background: #22C55E; }
-.live-pulse { animation: pulse 2s infinite; }
-@keyframes pulse {
-  0% { box-shadow: 0 0 0 0 rgba(34,197,94,0.6); }
-  70% { box-shadow: 0 0 0 6px rgba(34,197,94,0); }
-  100% { box-shadow: 0 0 0 0 rgba(34,197,94,0); }
+.live-pulse { animation: pulse-glow 2s infinite; }
+@keyframes pulse-glow {
+  0% { box-shadow: 0 0 0 0 rgba(34, 197, 94, 0.6); }
+  70% { box-shadow: 0 0 0 6px rgba(34, 197, 94, 0); }
+  100% { box-shadow: 0 0 0 0 rgba(34, 197, 94, 0); }
 }
-.toolbar-brand { font-family: var(--ff-heading); font-size: 11px; font-weight: 700; }
+.toolbar-brand { font-family: var(--ff-heading); font-size: 11px; font-weight: 700; color: #f8fafc; }
 .toolbar-actions { display: flex; align-items: center; gap: 5px; }
 .btn {
-  display: inline-flex; align-items: center; gap: 4px;
-  font-family: var(--ff-heading); font-size: 10px; font-weight: 600;
-  padding: 4px 10px; border-radius: 999px; border: none;
-  cursor: pointer; transition: all 0.15s; white-space: nowrap;
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  font-family: var(--ff-heading);
+  font-size: 10px;
+  font-weight: 600;
+  padding: 4px 10px;
+  border-radius: var(--r-full);
+  border: none;
+  cursor: pointer;
+  transition: all 0.15s ease;
+  white-space: nowrap;
 }
-.btn-primary { background: #15803D; color: #fff; }
+.btn-primary { background: #15803D; color: #ffffff; }
 .btn-primary:hover { background: #166534; }
-.btn-secondary { background: rgba(255,255,255,0.15); color: #fff; }
-.btn-secondary:hover { background: rgba(255,255,255,0.25); }
+.btn-secondary { background: rgba(255, 255, 255, 0.15); color: #ffffff; }
+.btn-secondary:hover { background: rgba(255, 255, 255, 0.25); }
 .btn-secondary.active { background: #22C55E; color: #0A1924; }
 .btn-dark { background: #1E293B; color: #E2E8F0; border: 1px solid rgba(255,255,255,0.1); }
 .btn-dark:hover { background: #334155; }
-.btn-outline { background: transparent; color: #94A3B8; border: 1px solid rgba(255,255,255,0.2); }
-.btn-outline:hover { background: rgba(255,255,255,0.08); color: #fff; }
+.btn-outline { background: transparent; color: #94A3B8; border: 1px solid rgba(255, 255, 255, 0.2); }
+.btn-outline:hover { background: rgba(255, 255, 255, 0.08); color: #ffffff; }
 
 /* ==========================================================================
-   POSTER CANVAS — True A4 at 96 DPI: 794px × 1123px
+   POSTER CANVAS — Exact 1-Page A4: 794px x 1123px
    ========================================================================== */
 .poster {
   width: 794px;
@@ -114,21 +129,21 @@ body {
   max-height: 1123px;
   background: var(--bg-poster);
   border-radius: var(--r-md);
-  box-shadow: 0 12px 40px rgba(0,0,0,0.18);
-  padding: 10px 10px 8px 10px;
+  box-shadow: 0 12px 40px rgba(0, 0, 0, 0.18);
+  padding: 10px 12px 8px 12px;
   display: grid;
-  grid-template-rows: 175px 172px 430px 38px 68px;
+  grid-template-rows: 175px 165px 78px 480px 42px 75px;
   gap: 6px;
-  overflow: clip;
+  overflow: hidden;
   position: relative;
 }
 
 /* ==========================================================================
-   ROW 1: HEADER (175px)
+   ROW 1: HEADER SECTION (175px)
    ========================================================================== */
 .poster-header {
   display: grid;
-  grid-template-columns: 1.2fr 0.85fr 0.95fr;
+  grid-template-columns: 1.25fr 0.85fr 0.95fr;
   gap: 10px;
   align-items: center;
   height: 175px;
@@ -143,7 +158,7 @@ body {
 
 .top-super-title {
   font-family: var(--ff-heading);
-  font-size: 7px;
+  font-size: 7.2px;
   font-weight: 800;
   color: var(--color-green);
   letter-spacing: 0.04em;
@@ -151,15 +166,21 @@ body {
   text-transform: uppercase;
 }
 
+.brand-title-wrap {
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+}
+
 .giant-wordmark {
   display: flex;
   flex-direction: column;
-  line-height: 0.85;
+  line-height: 0.84;
 }
 
 .word-route {
   font-family: var(--ff-heading);
-  font-size: 44px;
+  font-size: 42px;
   font-weight: 900;
   color: var(--color-navy);
   letter-spacing: -0.03em;
@@ -168,17 +189,18 @@ body {
   gap: 3px;
 }
 
-.radar-waves-icon { margin-top: 2px; display: inline-flex; }
+.radar-waves-icon {
+  margin-top: 2px;
+  display: inline-flex;
+}
 
 .word-sense {
   font-family: var(--ff-heading);
-  font-size: 44px;
+  font-size: 42px;
   font-weight: 900;
   color: var(--color-green);
   letter-spacing: -0.03em;
 }
-
-.brand-title-wrap { display: flex; flex-direction: column; gap: 0; }
 
 .brand-tagline {
   font-family: var(--ff-heading);
@@ -186,11 +208,14 @@ body {
   font-weight: 700;
   font-style: italic;
   color: var(--color-text);
-  line-height: 1.25;
-  margin-top: 3px;
+  line-height: 1.2;
+  margin-top: 2px;
 }
 
-.text-green-hl { color: var(--color-green-bright); font-weight: 800; }
+.text-green-hl {
+  color: var(--color-green-bright);
+  font-weight: 800;
+}
 
 .fleet-image-wrap {
   margin-top: 4px;
@@ -200,7 +225,13 @@ body {
   box-shadow: 0 1px 3px rgba(0,0,0,0.1);
   border: 1px solid rgba(0,0,0,0.06);
 }
-.fleet-img { width: 100%; height: 100%; object-fit: cover; display: block; }
+
+.fleet-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
 
 /* Header Center: Phone Mockup */
 .header-center-col {
@@ -209,47 +240,59 @@ body {
   justify-content: center;
   height: 100%;
 }
+
 .phone-mockup-3d-wrap {
   width: 100%;
-  max-width: 200px;
+  max-width: 195px;
   display: flex;
   justify-content: center;
 }
+
 .phone-mockup-3d-img {
   width: 100%;
   height: auto;
-  max-height: 170px;
+  max-height: 172px;
   object-fit: contain;
-  filter: drop-shadow(0 6px 14px rgba(0,0,0,0.15));
+  filter: drop-shadow(0 6px 14px rgba(0, 0, 0, 0.15));
 }
 
-/* Header Right: Value Props */
+/* Header Right: 4 Value Props */
 .header-right-col {
   display: flex;
   flex-direction: column;
-  gap: 6px;
+  gap: 5px;
   justify-content: center;
   padding-left: 2px;
 }
-.prop-item { display: flex; align-items: center; gap: 6px; }
+
+.prop-item {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
 .prop-icon-wrap {
-  width: 24px; height: 24px;
+  width: 24px;
+  height: 24px;
   border-radius: 50%;
   background: #E0E7DE;
   border: 1.5px solid #BBCCB8;
-  display: flex; align-items: center; justify-content: center;
+  display: flex;
+  align-items: center;
+  justify-content: center;
   flex-shrink: 0;
 }
+
 .prop-svg { width: 13px; height: 13px; }
 .prop-text { display: flex; flex-direction: column; }
 .prop-title {
   font-family: var(--ff-heading);
-  font-size: 9px;
+  font-size: 8.5px;
   font-weight: 800;
   color: var(--color-navy);
   letter-spacing: 0.02em;
 }
-.prop-desc { font-size: 7.5px; color: var(--color-text-mid); line-height: 1.2; }
+.prop-desc { font-size: 7.2px; color: var(--color-text-mid); line-height: 1.18; }
 
 /* ==========================================================================
    COMMON CARD STYLES
@@ -258,309 +301,437 @@ body {
   background: var(--color-white);
   border: 1px solid var(--color-border);
   border-radius: var(--r-md);
-  padding: 7px 9px;
-  box-shadow: 0 1px 3px rgba(0,0,0,0.04);
+  padding: 6px 8px;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.04);
   display: flex;
   flex-direction: column;
+  overflow: hidden;
 }
-.card-header-bar { display: flex; align-items: center; gap: 5px; margin-bottom: 3px; }
+
+.card-header-bar {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  margin-bottom: 3px;
+}
+
 .card-badge {
   background: var(--color-green);
-  color: #fff;
+  color: #ffffff;
   font-family: var(--ff-heading);
   font-size: 8.5px;
   font-weight: 900;
-  width: 16px; height: 16px;
+  width: 15px;
+  height: 15px;
   border-radius: 3px;
-  display: flex; align-items: center; justify-content: center;
+  display: flex;
+  align-items: center;
+  justify-content: center;
   flex-shrink: 0;
 }
+
 .card-heading {
   font-family: var(--ff-heading);
-  font-size: 10px;
+  font-size: 9.5px;
   font-weight: 900;
   letter-spacing: 0.04em;
   color: var(--color-navy);
   text-transform: uppercase;
 }
-.card-p { font-size: 8px; color: var(--color-text); line-height: 1.35; }
+
+.card-p { font-size: 7.5px; color: var(--color-text); line-height: 1.3; }
 
 /* ==========================================================================
-   ROW 2: THREE CARDS (172px)
+   ROW 2: THREE CARDS (165px)
    ========================================================================== */
 .grid-3-cards-row {
   display: grid;
   grid-template-columns: 0.95fr 1fr 1.15fr;
   gap: 6px;
-  height: 172px;
+  height: 165px;
 }
 
 /* 1. Problem */
 .problem-lead-text {
   font-family: var(--ff-heading);
-  font-size: 8.5px;
+  font-size: 8px;
   font-weight: 800;
   color: var(--color-navy);
-  line-height: 1.3;
+  line-height: 1.25;
   margin-bottom: 2px;
 }
 .question-list { display: flex; flex-direction: column; gap: 2px; margin: 2px 0; }
 .q-item { display: flex; align-items: center; gap: 4px; }
 .q-icon {
-  width: 12px; height: 12px;
+  width: 12px;
+  height: 12px;
   border-radius: 50%;
   background: #E8F0E5;
   border: 1px solid var(--color-green-bright);
   color: var(--color-green-bright);
-  font-size: 7px; font-weight: 900;
-  display: flex; align-items: center; justify-content: center;
+  font-size: 7px;
+  font-weight: 900;
+  display: flex;
+  align-items: center;
+  justify-content: center;
   flex-shrink: 0;
 }
-.q-text { font-size: 7.5px; font-style: italic; color: var(--color-navy); font-weight: 600; }
-.problem-footer-note { font-size: 7px; color: var(--color-text-light); font-style: italic; margin-top: 2px; }
+.q-text { font-size: 7.2px; font-style: italic; color: var(--color-navy); font-weight: 600; }
 
 /* 2. Beneficiaries */
 .bene-group { display: flex; flex-direction: column; gap: 2px; }
 .bene-group-title {
   font-family: var(--ff-heading);
-  font-size: 8px;
+  font-size: 7.8px;
   font-weight: 800;
   color: var(--color-green);
   letter-spacing: 0.02em;
 }
-.bene-item { display: flex; align-items: center; gap: 4px; font-size: 8px; color: var(--color-text); }
+.bene-item { display: flex; align-items: center; gap: 4px; font-size: 7.5px; color: var(--color-text); }
 .bene-icon { width: 12px; height: 12px; flex-shrink: 0; }
-.bene-item-sm { display: flex; align-items: center; gap: 3px; font-size: 7.5px; color: var(--color-text-mid); }
+.bene-item-sm { display: flex; align-items: center; gap: 3px; font-size: 7px; color: var(--color-text-mid); }
 .bene-icon-sm { width: 10px; height: 10px; flex-shrink: 0; }
 .card-inner-divider { border-bottom: 1px dashed var(--color-border); margin: 2px 0; }
 
 /* 3. Solution */
-.sol-layers-box { display: flex; gap: 5px; margin: 2px 0; }
+.sol-layers-box { display: flex; gap: 4px; margin: 2px 0; }
 .layer-item {
   flex: 1;
   background: #F4F6F3;
   border: 1px solid #DCE3D9;
   border-radius: var(--r-sm);
   padding: 3px 4px;
-  display: flex; gap: 3px;
+  display: flex;
+  gap: 3px;
   align-items: flex-start;
 }
-.layer-svg { width: 11px; height: 11px; margin-top: 1px; }
-.layer-text-col strong { font-size: 8px; color: var(--color-green); display: block; }
-.layer-text-col p { font-size: 6.5px; color: var(--color-text-mid); line-height: 1.2; }
-.sol-subnote { font-size: 7px; color: var(--color-text-mid); margin-bottom: 2px; }
-.sol-4-pillars { display: grid; grid-template-columns: 1fr 1fr; gap: 2px; }
-.pillar-item { display: flex; align-items: center; gap: 3px; font-size: 7px; font-weight: 600; color: var(--color-text); }
+.layer-svg { width: 11px; height: 11px; margin-top: 1px; flex-shrink: 0; }
+.layer-text-col strong { font-size: 7.5px; color: var(--color-green); display: block; }
+.layer-text-col p { font-size: 6.5px; color: var(--color-text-mid); line-height: 1.18; }
+.sol-4-pillars { display: grid; grid-template-columns: 1fr 1fr; gap: 2px; margin-top: 2px; }
+.pillar-item { display: flex; align-items: center; gap: 3px; font-size: 6.8px; font-weight: 600; color: var(--color-text); }
 .pillar-svg { width: 10px; height: 10px; flex-shrink: 0; }
 
 /* ==========================================================================
-   ROW 3: MIDDLE MAIN (430px)
+   ROW 3: 4. HOW IT WORKS (HORIZONTAL WORKFLOW STRIP: 78px)
    ========================================================================== */
-.grid-middle-main-row {
-  display: grid;
-  grid-template-columns: 0.85fr 1.15fr 1.65fr;
-  gap: 6px;
-  height: 430px;
-}
-
-/* 4. How It Works */
-.timeline-vertical {
+.workflow-strip-card {
+  background: var(--color-white);
+  border: 1px solid var(--color-border);
+  border-radius: var(--r-md);
+  padding: 5px 8px;
+  height: 78px;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  height: 100%;
-  padding: 1px 0;
 }
-.tl-step { display: flex; align-items: flex-start; gap: 4px; }
-.tl-left { display: flex; align-items: center; gap: 2px; width: 28px; flex-shrink: 0; }
+
+.card-header-bar-workflow {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  margin-bottom: 2px;
+}
+
+.timeline-horizontal {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 4px;
+  padding: 2px 0;
+}
+
+.tl-h-step {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  flex: 1;
+  background: #F8FAF7;
+  border: 1px solid #E2E8DF;
+  border-radius: var(--r-sm);
+  padding: 2.5px 3px;
+}
+
+.tl-h-head {
+  display: flex;
+  align-items: center;
+  gap: 3px;
+  margin-bottom: 1px;
+}
+
 .tl-num {
   background: var(--color-green);
-  color: #fff;
+  color: #ffffff;
   font-family: var(--ff-heading);
   font-size: 6.5px;
   font-weight: 900;
-  padding: 1px 2.5px;
+  padding: 0.5px 2px;
   border-radius: 2px;
 }
-.tl-icon { width: 11px; height: 11px; }
-.tl-right { display: flex; flex-direction: column; }
-.tl-title { font-family: var(--ff-heading); font-size: 8px; font-weight: 800; color: var(--color-navy); }
-.tl-desc { font-size: 7px; color: var(--color-text-mid); line-height: 1.25; }
 
-/* 5. Key Features (Dark) */
+.tl-h-icon { width: 11px; height: 11px; }
+.tl-h-title { font-family: var(--ff-heading); font-size: 7.2px; font-weight: 800; color: var(--color-navy); }
+.tl-h-desc { font-size: 6px; color: var(--color-text-mid); line-height: 1.15; }
+.tl-h-arrow { font-size: 11px; font-weight: 900; color: var(--color-green-bright); flex-shrink: 0; }
+
+/* ==========================================================================
+   ROW 4: DUAL POWER GRID (KEY FEATURES 3x3 + TECH/EXAMPLE: 480px)
+   ========================================================================== */
+.grid-dual-power-row {
+  display: grid;
+  grid-template-columns: 1.05fr 1fr;
+  gap: 6px;
+  height: 480px;
+}
+
+/* Left: Key Features 3x3 Dark Matrix */
 .dark-card {
   background: var(--color-navy);
   border: 1px solid var(--color-border-dark);
   border-radius: var(--r-md);
   padding: 7px 8px;
-  color: #fff;
-  display: flex;
-  flex-direction: column;
-}
-.dark-card-header { display: flex; align-items: center; gap: 5px; margin-bottom: 3px; }
-.card-badge-dark {
-  background: #fff; color: var(--color-navy);
-  font-family: var(--ff-heading); font-size: 8.5px; font-weight: 900;
-  width: 16px; height: 16px; border-radius: 3px;
-  display: flex; align-items: center; justify-content: center;
-}
-.card-heading-dark {
-  font-family: var(--ff-heading);
-  font-size: 10px;
-  font-weight: 900;
-  letter-spacing: 0.04em;
-  color: #fff;
-  text-transform: uppercase;
-}
-.dark-card-body {
+  color: #ffffff;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  height: 100%;
-  padding: 1px 0;
 }
-.kf-item { display: flex; align-items: flex-start; gap: 4px; }
-.kf-icon-box { width: 16px; display: flex; justify-content: center; margin-top: 1px; flex-shrink: 0; }
-.kf-badge-num { font-family: var(--ff-mono); font-size: 7px; font-weight: 800; color: #22C55E; }
-.kf-svg { width: 11px; height: 11px; }
-.kf-text { display: flex; flex-direction: column; }
-.kf-title { font-family: var(--ff-heading); font-size: 8px; font-weight: 800; color: #F8FAFC; }
-.kf-desc { font-size: 6.5px; color: #CBD5E1; line-height: 1.25; }
-.kf-desc em { color: #F1F5F9; font-style: normal; font-weight: 600; }
-.kf-conf-pill {
-  background: rgba(255,255,255,0.09);
-  border: 1px solid rgba(255,255,255,0.15);
-  border-radius: 2px;
-  padding: 1.5px 4px;
-  margin-top: 1px;
-  display: flex; justify-content: space-between; align-items: center;
-  font-size: 6px; color: #6EE7B7;
-}
-.kf-bars { font-size: 7px; }
 
-/* Right Column: Emerging Tech */
-.right-stack-col { display: flex; flex-direction: column; gap: 4px; justify-content: space-between; height: 100%; }
+.dark-card-header {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  margin-bottom: 4px;
+}
+
+.card-badge-dark {
+  background: #ffffff;
+  color: var(--color-navy);
+  font-family: var(--ff-heading);
+  font-size: 8.5px;
+  font-weight: 900;
+  width: 16px;
+  height: 16px;
+  border-radius: 3px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.card-heading-dark {
+  font-family: var(--ff-heading);
+  font-size: 9.5px;
+  font-weight: 900;
+  letter-spacing: 0.04em;
+  color: #ffffff;
+  text-transform: uppercase;
+}
+
+.kf-badge-sub {
+  font-family: var(--ff-mono);
+  font-size: 6.5px;
+  color: #22C55E;
+  background: rgba(34, 197, 94, 0.15);
+  border: 1px solid rgba(34, 197, 94, 0.3);
+  padding: 1px 4px;
+  border-radius: 2px;
+  margin-left: auto;
+}
+
+.kf-grid-3x3 {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  grid-template-rows: repeat(3, 1fr);
+  gap: 5px;
+  height: 100%;
+}
+
+.kf-card-cell {
+  background: rgba(255, 255, 255, 0.06);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: var(--r-sm);
+  padding: 5px 6px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 2px;
+}
+
+.kf-cell-head {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}
+
+.kf-metric-pill {
+  font-family: var(--ff-mono);
+  font-size: 7.5px;
+  font-weight: 900;
+  color: #22C55E;
+  background: rgba(34, 197, 94, 0.2);
+  padding: 0.5px 3px;
+  border-radius: 2px;
+}
+
+.kf-svg { width: 12px; height: 12px; flex-shrink: 0; }
+.kf-cell-title { font-family: var(--ff-heading); font-size: 7.5px; font-weight: 800; color: #F8FAFC; }
+.kf-cell-meta { font-size: 6.2px; color: #CBD5E1; line-height: 1.2; }
+
+/* Right Column: Emerging Tech & Sensors + 8. Example */
+.right-stack-col {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  justify-content: space-between;
+  height: 100%;
+}
+
+.emerging-tech-card {
+  flex: 1.15;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  padding: 6px 8px;
+}
+
 .no-tracker-chip {
   background: #EAF3E7;
   border: 1px solid #BED8B7;
   color: var(--color-green);
   font-family: var(--ff-heading);
-  font-size: 7.5px;
+  font-size: 7px;
   font-weight: 800;
   padding: 2px 5px;
   border-radius: 3px;
-  display: flex; align-items: center; gap: 3px;
-  margin-bottom: 1px;
+  display: flex;
+  align-items: center;
+  gap: 3px;
+  margin-bottom: 2px;
 }
-.nt-svg { width: 11px; height: 11px; }
-.tech-concepts-grid { display: grid; grid-template-columns: 1fr; gap: 2px; }
-.tc-item { display: flex; align-items: flex-start; gap: 3px; font-size: 7px; color: var(--color-text); line-height: 1.25; }
-.tc-icon { width: 10px; height: 10px; margin-top: 1px; flex-shrink: 0; }
+.nt-svg { width: 11px; height: 11px; flex-shrink: 0; }
+
+.tech-concepts-grid { display: grid; grid-template-columns: 1fr; gap: 3px; }
+.tc-item { display: flex; align-items: flex-start; gap: 4px; font-size: 6.8px; color: var(--color-text); line-height: 1.25; }
+.tc-icon { width: 11px; height: 11px; margin-top: 1px; flex-shrink: 0; }
 .tc-item strong { color: var(--color-navy); }
 
 .phone-hw-bar {
   background: #F4F6F3;
   border: 1px solid #DCE3D9;
   border-radius: var(--r-sm);
-  padding: 2px 4px;
-  margin-top: 1px;
+  padding: 2.5px 5px;
+  margin-top: 2px;
 }
 .ph-title {
   font-family: var(--ff-heading);
-  font-size: 7px;
+  font-size: 6.8px;
   font-weight: 800;
   color: var(--color-green);
   letter-spacing: 0.03em;
-  margin-bottom: 1px;
+  margin-bottom: 1.5px;
 }
 .hw-icons-row { display: flex; justify-content: space-between; gap: 2px; }
 .hw-item { display: flex; align-items: center; gap: 2px; font-size: 6.5px; font-weight: 700; color: var(--color-text); }
-.hw-svg { width: 9px; height: 9px; }
+.hw-svg { width: 9px; height: 9px; flex-shrink: 0; }
 
-/* 8. Example */
+/* 8. EXAMPLE Card */
 .example-card {
-  background: var(--color-white);
-  border: 1px solid var(--color-border);
-  border-radius: var(--r-md);
-  padding: 4px 6px;
-  box-shadow: 0 1px 3px rgba(0,0,0,0.04);
+  flex: 0.85;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  padding: 5px 7px;
 }
+
 .example-header { display: flex; align-items: center; gap: 4px; margin-bottom: 2px; }
 .ex-badge {
   background: var(--color-green);
-  color: #fff;
+  color: #ffffff;
   font-family: var(--ff-heading);
-  font-size: 8px; font-weight: 900;
-  width: 14px; height: 14px; border-radius: 2px;
-  display: flex; align-items: center; justify-content: center;
+  font-size: 7.5px;
+  font-weight: 900;
+  width: 14px;
+  height: 14px;
+  border-radius: 2px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
-.ex-heading { font-family: var(--ff-heading); font-size: 9px; font-weight: 900; color: var(--color-navy); }
-.ex-query { font-family: var(--ff-mono); font-size: 7px; font-weight: 700; color: var(--color-green-bright); margin-left: auto; }
+.ex-heading { font-family: var(--ff-heading); font-size: 8.5px; font-weight: 900; color: var(--color-navy); }
+.ex-query { font-family: var(--ff-mono); font-size: 6.8px; font-weight: 700; color: var(--color-green-bright); margin-left: auto; }
 .example-options-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 4px; }
-.ex-option-box { border-radius: var(--r-sm); padding: 3px 4px; display: flex; flex-direction: column; gap: 2px; }
+.ex-option-box { border-radius: var(--r-sm); padding: 3px 5px; display: flex; flex-direction: column; gap: 2px; }
 .opt-a { background: #F0FDF4; border: 1px solid #BBF7D0; }
 .opt-b { background: #F0F9FF; border: 1px solid #BAE6FD; }
-.ex-opt-title-row { display: flex; align-items: center; gap: 3px; font-size: 7.5px; }
-.opt-dot { width: 5px; height: 5px; border-radius: 50%; }
+.ex-opt-title-row { display: flex; align-items: center; gap: 3px; font-size: 7.2px; }
+.opt-dot { width: 5px; height: 5px; border-radius: 50%; flex-shrink: 0; }
 .green-dot { background: #16A34A; }
 .blue-dot { background: #0284C7; }
-.opt-sub { font-size: 6px; color: var(--color-text-light); margin-left: auto; }
-.ex-metrics-row { display: flex; justify-content: space-between; background: rgba(255,255,255,0.75); padding: 2px 3px; border-radius: 2px; }
+.ex-metrics-row { display: flex; justify-content: space-between; background: rgba(255,255,255,0.8); padding: 2px 4px; border-radius: 2px; }
 .ex-met { display: flex; flex-direction: column; }
 .met-label { font-size: 5.5px; color: var(--color-text-light); }
 .met-val { font-family: var(--ff-mono); font-size: 8px; font-weight: 900; color: var(--color-navy); }
+.met-val-sm { font-size: 6.5px; font-weight: 800; color: var(--color-navy); }
 .green-val { color: #15803D; font-size: 9px; }
 .blue-val { color: #0284C7; font-size: 9px; }
-.ex-sub-metrics { display: flex; justify-content: space-between; font-size: 6.5px; color: var(--color-text-mid); }
-.ex-sub-metrics strong { color: var(--color-navy); }
+.blue-text { color: #0284C7; }
 .opt-btn-pill {
   font-family: var(--ff-heading);
-  font-size: 6.5px;
+  font-size: 6.2px;
   font-weight: 900;
   text-align: center;
   padding: 2px 4px;
   border-radius: 2px;
-  color: #fff;
+  color: #ffffff;
 }
 .btn-fastest { background: #15803D; }
 .btn-connected { background: #0284C7; }
 
 /* ==========================================================================
-   ROW 4: TECH STACK (38px)
+   ROW 5: 7. TECH STACK (DARK BAR: 42px)
    ========================================================================== */
 .tech-stack-row {
   background: var(--color-navy);
   border-radius: var(--r-md);
-  padding: 3px 7px;
+  padding: 3px 6px;
   display: flex;
   align-items: center;
   gap: 6px;
-  color: #fff;
-  height: 38px;
+  color: #ffffff;
+  height: 42px;
 }
 .ts-header { display: flex; align-items: center; gap: 3px; flex-shrink: 0; }
 .ts-badge {
-  background: #fff; color: var(--color-navy);
-  font-family: var(--ff-heading); font-size: 8px; font-weight: 900;
-  width: 14px; height: 14px; border-radius: 2px;
-  display: flex; align-items: center; justify-content: center;
+  background: #ffffff;
+  color: var(--color-navy);
+  font-family: var(--ff-heading);
+  font-size: 7.5px;
+  font-weight: 900;
+  width: 14px;
+  height: 14px;
+  border-radius: 2px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
-.ts-heading { font-family: var(--ff-heading); font-size: 9px; font-weight: 900; letter-spacing: 0.04em; white-space: nowrap; }
+.ts-heading { font-family: var(--ff-heading); font-size: 8.5px; font-weight: 900; letter-spacing: 0.04em; white-space: nowrap; }
 .ts-items-grid { display: grid; grid-template-columns: repeat(8, 1fr); gap: 3px; width: 100%; }
 .ts-card {
-  background: rgba(255,255,255,0.06);
-  border: 1px solid rgba(255,255,255,0.1);
+  background: rgba(255, 255, 255, 0.06);
+  border: 1px solid rgba(255, 255, 255, 0.1);
   border-radius: 2px;
   padding: 2px 3px;
-  display: flex; align-items: center; gap: 2px;
+  display: flex;
+  align-items: center;
+  gap: 2.5px;
 }
-.ts-logo { width: 9px; height: 9px; object-fit: contain; flex-shrink: 0; }
+.ts-logo { width: 10px; height: 10px; object-fit: contain; flex-shrink: 0; }
 .ts-info { display: flex; flex-direction: column; }
-.ts-role { font-size: 5.5px; color: #94A3B8; white-space: nowrap; }
-.ts-tech { font-size: 6.5px; font-weight: 700; color: #F8FAFC; white-space: nowrap; }
+.ts-role { font-size: 5px; color: #94A3B8; white-space: nowrap; }
+.ts-tech { font-size: 6.2px; font-weight: 700; color: #F8FAFC; white-space: nowrap; }
 
 /* ==========================================================================
-   ROW 5: FOOTER (68px)
+   ROW 6: FOOTER (75px)
    ========================================================================== */
 .poster-footer-row {
   display: grid;
@@ -571,35 +742,42 @@ body {
   border: 1px solid var(--color-border);
   border-radius: var(--r-md);
   padding: 4px 7px;
-  height: 68px;
+  height: 75px;
 }
-.foot-section-header { display: flex; align-items: center; gap: 3px; margin-bottom: 1.5px; }
+.foot-section-header { display: flex; align-items: center; gap: 3px; margin-bottom: 1px; }
 .foot-badge {
-  background: var(--color-green); color: #fff;
-  font-family: var(--ff-heading); font-size: 7px; font-weight: 900;
-  width: 12px; height: 12px; border-radius: 2px;
-  display: flex; align-items: center; justify-content: center;
+  background: var(--color-green);
+  color: #ffffff;
+  font-family: var(--ff-heading);
+  font-size: 7px;
+  font-weight: 900;
+  width: 12px;
+  height: 12px;
+  border-radius: 2px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
-.foot-heading { font-family: var(--ff-heading); font-size: 8.5px; font-weight: 900; color: var(--color-navy); }
+.foot-heading { font-family: var(--ff-heading); font-size: 8px; font-weight: 900; color: var(--color-navy); }
 .team-proponents-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 1.5px; }
-.proponent-box { display: flex; align-items: center; gap: 2px; font-size: 7px; color: var(--color-text); }
+.proponent-box { display: flex; align-items: center; gap: 2px; font-size: 6.8px; color: var(--color-text); }
 .prop-user-svg { width: 9px; height: 9px; }
 .course-affiliation-bar {
-  font-size: 6.5px;
+  font-size: 6.2px;
   color: var(--color-text-mid);
-  margin-top: 1.5px;
+  margin-top: 1px;
   padding-top: 1px;
   border-top: 1px dashed var(--color-border);
 }
 
 .foot-citations-list { list-style: none; display: flex; flex-direction: column; gap: 1px; }
-.foot-citations-list li { font-size: 6px; color: var(--color-text-light); line-height: 1.2; }
+.foot-citations-list li { font-size: 5.8px; color: var(--color-text-light); line-height: 1.18; }
 .foot-citations-list strong { color: var(--color-navy); }
 
 .footer-col-qr { display: flex; justify-content: flex-end; }
 .qr-box { display: flex; flex-direction: column; align-items: center; gap: 1px; }
-.qr-img { width: 32px; height: 32px; object-fit: contain; }
-.qr-label { font-family: var(--ff-heading); font-size: 6px; font-weight: 900; color: var(--color-green); letter-spacing: 0.02em; }
+.qr-img { width: 34px; height: 34px; object-fit: contain; }
+.qr-label { font-family: var(--ff-heading); font-size: 5.5px; font-weight: 900; color: var(--color-green); letter-spacing: 0.02em; }
 
 /* ==========================================================================
    PRINT — Exact 1-Page A4, Zero Scaling
@@ -611,7 +789,7 @@ body {
 
 @media print {
   html, body {
-    background: #fff !important;
+    background: #ffffff !important;
     padding: 0 !important;
     margin: 0 !important;
     width: 210mm !important;
@@ -627,7 +805,7 @@ body {
     height: 297mm !important;
     max-height: 297mm !important;
     min-height: 297mm !important;
-    padding: 4mm 5mm 3.5mm 5mm !important;
+    padding: 3.5mm 4.5mm 3mm 4.5mm !important;
     margin: 0 !important;
     border-radius: 0 !important;
     box-shadow: none !important;
@@ -649,28 +827,28 @@ body {
     </div>
     <div class="toolbar-actions">
       <button class="btn btn-secondary" id="btnToggleEdit" title="Toggle inline content editing (Cmd+E)">
-        <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2"><path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"/><path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z"/></svg>
+        <svg viewBox="0 0 24 24" width="13" height="13" fill="none" stroke="currentColor" stroke-width="2"><path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"/><path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z"/></svg>
         <span id="editBtnLabel">Enable Edit Mode</span>
       </button>
       <button class="btn btn-primary" id="btnPrint" title="Print or save as 1-page A4 PDF (Cmd+P)">
-        <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 6 2 18 2 18 9"/><path d="M6 18H4a2 2 0 0 1-2-2v-5a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2h-2"/><rect x="6" y="14" width="12" height="8"/></svg>
+        <svg viewBox="0 0 24 24" width="13" height="13" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 6 2 18 2 18 9"/><path d="M6 18H4a2 2 0 0 1-2-2v-5a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2h-2"/><rect x="6" y="14" width="12" height="8"/></svg>
         <span>Print / Save PDF</span>
       </button>
       <button class="btn btn-dark" id="btnSaveDraft" title="Save customizations locally (Cmd+S)">
-        <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2"><path d="M19 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11l5 5v11a2 2 0 0 1-2 2z"/><polyline points="17 21 17 13 7 13 7 21"/><polyline points="7 3 7 8 15 8"/></svg>
+        <svg viewBox="0 0 24 24" width="13" height="13" fill="none" stroke="currentColor" stroke-width="2"><path d="M19 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11l5 5v11a2 2 0 0 1-2 2z"/><polyline points="17 21 17 13 7 13 7 21"/><polyline points="7 3 7 8 15 8"/></svg>
         <span>Save Draft</span>
       </button>
       <button class="btn btn-outline" id="btnReset" title="Reset to default proposal text">
-        <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2"><polyline points="1 4 1 10 7 10"/><path d="M3.51 15a9 9 0 1 0 2.13-9.36L1 10"/></svg>
+        <svg viewBox="0 0 24 24" width="13" height="13" fill="none" stroke="currentColor" stroke-width="2"><polyline points="1 4 1 10 7 10"/><path d="M3.51 15a9 9 0 1 0 2.13-9.36L1 10"/></svg>
         <span>Reset</span>
       </button>
     </div>
   </aside>
 
-  <!-- Main Infographic Poster Canvas (Calibrated for exact 1-page A4) -->
+  <!-- Main Infographic Poster Canvas (Calibrated for exact 1-page A4: 794px x 1123px) -->
   <main class="poster" id="posterRoot">
 
-    <!-- ==================== HEADER SECTION ==================== -->
+    <!-- ==================== ROW 1: HEADER SECTION ==================== -->
     <header class="poster-header">
       
       <!-- Left Column: Title, Descriptor, Tagline & Jeepney Image -->
@@ -685,10 +863,10 @@ body {
               ROUTE
               <!-- Green Sensor Radar Waves emitting from E -->
               <div class="radar-waves-icon">
-                <svg viewBox="0 0 45 45" width="34" height="34" fill="none">
-                  <path d="M 5 40 A 35 35 0 0 1 40 5" stroke="#15803D" stroke-width="4" stroke-linecap="round" />
-                  <path d="M 5 40 A 24 24 0 0 1 29 16" stroke="#15803D" stroke-width="3.5" stroke-linecap="round" />
-                  <path d="M 5 40 A 13 13 0 0 1 18 27" stroke="#15803D" stroke-width="3" stroke-linecap="round" />
+                <svg viewBox="0 0 45 45" width="26" height="26" fill="none">
+                  <path d="M 5 40 A 35 35 0 0 1 40 5" stroke="#15803D" stroke-width="4.5" stroke-linecap="round" />
+                  <path d="M 5 40 A 24 24 0 0 1 29 16" stroke="#15803D" stroke-width="4" stroke-linecap="round" />
+                  <path d="M 5 40 A 13 13 0 0 1 18 27" stroke="#15803D" stroke-width="3.5" stroke-linecap="round" />
                 </svg>
               </div>
             </div>
@@ -696,8 +874,7 @@ body {
           </div>
 
           <div class="brand-tagline">
-            Know <span class="text-green-hl">where</span> rides are.<br/>
-            Know <span class="text-green-hl">when</span> they’re available.
+            Know <span class="text-green-hl">where</span> rides are. Know <span class="text-green-hl">when</span> they’re available.
           </div>
         </div>
 
@@ -732,7 +909,7 @@ body {
           </div>
           <div class="prop-text">
             <strong class="prop-title">REAL-TIME INSIGHTS</strong>
-            <p class="prop-desc">Up-to-date community intelligence.</p>
+            <p class="prop-desc">Up-to-date community mobility intelligence.</p>
           </div>
         </div>
 
@@ -742,7 +919,7 @@ body {
           </div>
           <div class="prop-text">
             <strong class="prop-title">CONNECTED JOURNEYS</strong>
-            <p class="prop-desc">Know your ride. Know your signal.</p>
+            <p class="prop-desc">Know your ride. Know your mobile signal.</p>
           </div>
         </div>
 
@@ -752,7 +929,7 @@ body {
           </div>
           <div class="prop-text">
             <strong class="prop-title">PRIVACY FIRST</strong>
-            <p class="prop-desc">Your data stays protected.</p>
+            <p class="prop-desc">Aggregated & anonymous on-device data.</p>
           </div>
         </div>
 
@@ -760,7 +937,7 @@ body {
 
     </header>
 
-    <!-- ==================== ROW 1: 1. THE PROBLEM / 2. BENEFICIARIES / 3. THE SOLUTION ==================== -->
+    <!-- ==================== ROW 2: 1. PROBLEM / 2. BENEFICIARIES / 3. SOLUTION ==================== -->
     <section class="grid-3-cards-row">
       
       <!-- 1. THE PROBLEM -->
@@ -771,10 +948,10 @@ body {
         </div>
         <div class="card-body">
           <h3 class="problem-lead-text">
-            Knowing a transport route does not mean knowing whether a ride is actually available.
+            Knowing a route does not mean knowing if a ride is available right now.
           </h3>
           <p class="card-p">
-            Informal public transportation can change depending on the time, location, demand, traffic, weather, and day of the week. Commuters may already know where vehicles usually pass, but they still face questions such as:
+            Informal transit changes by time, traffic, and weather. Commuters face daily uncertainty:
           </p>
           
           <div class="question-list">
@@ -792,13 +969,9 @@ body {
             </div>
             <div class="q-item">
               <span class="q-icon">?</span>
-              <span class="q-text">“Will I still have mobile signal during the trip?”</span>
+              <span class="q-text">“Will I have mobile signal along the trip?”</span>
             </div>
           </div>
-
-          <p class="problem-footer-note">
-            Existing static route maps cannot fully answer these changing, real-world conditions.
-          </p>
         </div>
       </article>
 
@@ -815,15 +988,15 @@ body {
             <h4 class="bene-group-title">PRIMARY USERS</h4>
             <div class="bene-item">
               <img src="https://api.iconify.design/lucide:graduation-cap.svg?color=%2315803D" alt="" class="bene-icon" />
-              <div class="bene-text"><strong>Students and daily commuters</strong></div>
+              <span><strong>Students & daily commuters</strong></span>
             </div>
             <div class="bene-item">
               <img src="https://api.iconify.design/lucide:moon.svg?color=%2315803D" alt="" class="bene-icon" />
-              <div class="bene-text"><strong>Workers and late-night commuters</strong></div>
+              <span><strong>Workers & late-night commuters</strong></span>
             </div>
             <div class="bene-item">
               <img src="https://api.iconify.design/lucide:bike.svg?color=%2315803D" alt="" class="bene-icon" />
-              <div class="bene-text"><strong>Delivery and gig-economy workers</strong></div>
+              <span><strong>Delivery & gig-economy workers</strong></span>
             </div>
           </div>
 
@@ -834,23 +1007,15 @@ body {
             <h4 class="bene-group-title">SECONDARY BENEFICIARIES</h4>
             <div class="bene-item-sm">
               <img src="https://api.iconify.design/lucide:school.svg?color=%2315803D" alt="" class="bene-icon-sm" />
-              <span>Schools and universities</span>
-            </div>
-            <div class="bene-item-sm">
-              <img src="https://api.iconify.design/lucide:bus.svg?color=%2315803D" alt="" class="bene-icon-sm" />
-              <span>Transport cooperatives and associations</span>
+              <span>Schools, universities & transport coops</span>
             </div>
             <div class="bene-item-sm">
               <img src="https://api.iconify.design/lucide:landmark.svg?color=%2315803D" alt="" class="bene-icon-sm" />
-              <span>Local government and transport planners</span>
-            </div>
-            <div class="bene-item-sm">
-              <img src="https://api.iconify.design/lucide:microscope.svg?color=%2315803D" alt="" class="bene-icon-sm" />
-              <span>Researchers</span>
+              <span>Local government & transport planners</span>
             </div>
             <div class="bene-item-sm">
               <img src="https://api.iconify.design/lucide:radio-tower.svg?color=%2315803D" alt="" class="bene-icon-sm" />
-              <span>Telecommunications and mobility planners</span>
+              <span>Researchers & telco mobility planners</span>
             </div>
           </div>
 
@@ -865,51 +1030,43 @@ body {
         </div>
         <div class="card-body">
           <p class="card-p">
-            <strong>RouteSense</strong> is an Android-based mobility intelligence platform that uses sensors inside passengers' smartphones to understand how informal transportation behaves over time.
+            <strong>RouteSense</strong> uses built-in passenger smartphone sensors to understand informal transit behavior over time without driver apps or trackers.
           </p>
 
           <div class="sol-layers-box">
             <div class="layer-item">
-              <div class="layer-icon-col">
-                <img src="https://api.iconify.design/lucide:map-pin.svg?color=%2315803D" alt="" class="layer-svg" />
-              </div>
+              <img src="https://api.iconify.design/lucide:map-pin.svg?color=%2315803D" alt="" class="layer-svg" />
               <div class="layer-text-col">
                 <strong>StopSense</strong>
-                <p>Learns patterns related to passenger movement, pickup areas, and service availability.</p>
+                <p>Learns pickup areas, movement, & service probability.</p>
               </div>
             </div>
 
             <div class="layer-item">
-              <div class="layer-icon-col">
-                <img src="https://api.iconify.design/lucide:radio.svg?color=%2315803D" alt="" class="layer-svg" />
-              </div>
+              <img src="https://api.iconify.design/lucide:radio.svg?color=%2315803D" alt="" class="layer-svg" />
               <div class="layer-text-col">
                 <strong>SignalTrail</strong>
-                <p>Measures cellular connectivity along frequently used transport corridors.</p>
+                <p>Measures cellular connectivity along transit corridors.</p>
               </div>
             </div>
           </div>
 
-          <p class="sol-subnote">
-            Instead of simply showing commuters where a route exists, RouteSense estimates:
-          </p>
-
           <div class="sol-4-pillars">
             <div class="pillar-item">
               <img src="https://api.iconify.design/lucide:map-pin.svg?color=%2315803D" alt="" class="pillar-svg" />
-              <span>Where rides are likely available</span>
+              <span>Where rides are available</span>
             </div>
             <div class="pillar-item">
               <img src="https://api.iconify.design/lucide:clock.svg?color=%2315803D" alt="" class="pillar-svg" />
-              <span>When they are available</span>
+              <span>When they arrive</span>
             </div>
             <div class="pillar-item">
               <img src="https://api.iconify.design/lucide:check-circle.svg?color=%2315803D" alt="" class="pillar-svg" />
-              <span>How reliable the estimate is</span>
+              <span>How reliable estimate is</span>
             </div>
             <div class="pillar-item">
               <img src="https://api.iconify.design/lucide:wifi.svg?color=%2315803D" alt="" class="pillar-svg" />
-              <span>How connected the journey may be</span>
+              <span>Route cellular strength</span>
             </div>
           </div>
 
@@ -918,270 +1075,235 @@ body {
 
     </section>
 
-    <!-- ==================== MIDDLE-BOTTOM: 4. HOW IT WORKS / 5. KEY FEATURES / EMERGING TECH & 8. EXAMPLE ==================== -->
-    <section class="grid-middle-main-row">
-      
-      <!-- 4. HOW IT WORKS (Vertical Timeline) -->
-      <article class="clean-card workflow-card">
-        <div class="card-header-bar">
-          <span class="card-badge">4</span>
-          <h2 class="card-heading">HOW IT WORKS</h2>
-        </div>
-        <div class="card-body">
-          <div class="timeline-vertical">
-            
-            <div class="tl-step">
-              <div class="tl-left">
-                <span class="tl-num">01</span>
-                <img src="https://api.iconify.design/lucide:smartphone.svg?color=%230F172A" alt="" class="tl-icon" />
-              </div>
-              <div class="tl-right">
-                <strong class="tl-title">Opt In</strong>
-                <p class="tl-desc">The commuter voluntarily enables passive mobility sensing.</p>
-              </div>
-            </div>
-
-            <div class="tl-step">
-              <div class="tl-left">
-                <span class="tl-num">02</span>
-                <img src="https://api.iconify.design/lucide:footprints.svg?color=%230F172A" alt="" class="tl-icon" />
-              </div>
-              <div class="tl-right">
-                <strong class="tl-title">Sense Movement</strong>
-                <p class="tl-desc">The phone detects activity changes such as walking, waiting, and travelling in a vehicle.</p>
-              </div>
-            </div>
-
-            <div class="tl-step">
-              <div class="tl-left">
-                <span class="tl-num">03</span>
-                <img src="https://api.iconify.design/lucide:radio.svg?color=%230F172A" alt="" class="tl-icon" />
-              </div>
-              <div class="tl-right">
-                <strong class="tl-title">Collect Context</strong>
-                <p class="tl-desc">GPS/GNSS, accelerometer, gyroscope, time, and cellular signal measurements provide mobility context.</p>
-              </div>
-            </div>
-
-            <div class="tl-step">
-              <div class="tl-left">
-                <span class="tl-num">04</span>
-                <img src="https://api.iconify.design/lucide:cpu.svg?color=%230F172A" alt="" class="tl-icon" />
-              </div>
-              <div class="tl-right">
-                <strong class="tl-title">Analyze On-Device</strong>
-                <p class="tl-desc">RouteSense estimates probable boarding areas, travel corridors, movement patterns, and connectivity conditions.</p>
-              </div>
-            </div>
-
-            <div class="tl-step">
-              <div class="tl-left">
-                <span class="tl-num">05</span>
-                <img src="https://api.iconify.design/lucide:lock.svg?color=%230F172A" alt="" class="tl-icon" />
-              </div>
-              <div class="tl-right">
-                <strong class="tl-title">Protect Privacy</strong>
-                <p class="tl-desc">Detailed raw movement data is minimized and converted into anonymous or aggregated observations.</p>
-              </div>
-            </div>
-
-            <div class="tl-step">
-              <div class="tl-left">
-                <span class="tl-num">06</span>
-                <img src="https://api.iconify.design/lucide:users.svg?color=%230F172A" alt="" class="tl-icon" />
-              </div>
-              <div class="tl-right">
-                <strong class="tl-title">Build Community Intelligence</strong>
-                <p class="tl-desc">Observations from many trips reveal service patterns, pickup activity, reliability, and connectivity.</p>
-              </div>
-            </div>
-
-            <div class="tl-step">
-              <div class="tl-left">
-                <span class="tl-num">07</span>
-                <img src="https://api.iconify.design/lucide:git-branch.svg?color=%230F172A" alt="" class="tl-icon" />
-              </div>
-              <div class="tl-right">
-                <strong class="tl-title">Recommend</strong>
-                <p class="tl-desc">RouteSense suggests transportation options based on current and historical conditions.</p>
-              </div>
-            </div>
-
+    <!-- ==================== ROW 3: 4. HOW IT WORKS (HORIZONTAL WORKFLOW STRIP) ==================== -->
+    <section class="clean-card workflow-strip-card">
+      <div class="card-header-bar-workflow">
+        <span class="card-badge">4</span>
+        <h2 class="card-heading">HOW IT WORKS — PASSENGER SENSING TO MOBILITY INTELLIGENCE</h2>
+      </div>
+      <div class="timeline-horizontal">
+        
+        <div class="tl-h-step">
+          <div class="tl-h-head">
+            <span class="tl-num">01</span>
+            <img src="https://api.iconify.design/lucide:smartphone.svg?color=%2315803D" alt="" class="tl-h-icon" />
           </div>
+          <strong class="tl-h-title">Opt In</strong>
+          <p class="tl-h-desc">Voluntary passive sensing</p>
         </div>
-      </article>
 
-      <!-- 5. KEY FEATURES (Dark Navy Column) -->
+        <div class="tl-h-arrow">›</div>
+
+        <div class="tl-h-step">
+          <div class="tl-h-head">
+            <span class="tl-num">02</span>
+            <img src="https://api.iconify.design/lucide:footprints.svg?color=%2315803D" alt="" class="tl-h-icon" />
+          </div>
+          <strong class="tl-h-title">Sense Movement</strong>
+          <p class="tl-h-desc">Walk → Wait → Vehicle</p>
+        </div>
+
+        <div class="tl-h-arrow">›</div>
+
+        <div class="tl-h-step">
+          <div class="tl-h-head">
+            <span class="tl-num">03</span>
+            <img src="https://api.iconify.design/lucide:radio.svg?color=%2315803D" alt="" class="tl-h-icon" />
+          </div>
+          <strong class="tl-h-title">Collect Context</strong>
+          <p class="tl-h-desc">GNSS, sensors & signal</p>
+        </div>
+
+        <div class="tl-h-arrow">›</div>
+
+        <div class="tl-h-step">
+          <div class="tl-h-head">
+            <span class="tl-num">04</span>
+            <img src="https://api.iconify.design/lucide:cpu.svg?color=%2315803D" alt="" class="tl-h-icon" />
+          </div>
+          <strong class="tl-h-title">Analyze On-Device</strong>
+          <p class="tl-h-desc">Extract local patterns</p>
+        </div>
+
+        <div class="tl-h-arrow">›</div>
+
+        <div class="tl-h-step">
+          <div class="tl-h-head">
+            <span class="tl-num">05</span>
+            <img src="https://api.iconify.design/lucide:lock.svg?color=%2315803D" alt="" class="tl-h-icon" />
+          </div>
+          <strong class="tl-h-title">Protect Privacy</strong>
+          <p class="tl-h-desc">Anonymous aggregation</p>
+        </div>
+
+        <div class="tl-h-arrow">›</div>
+
+        <div class="tl-h-step">
+          <div class="tl-h-head">
+            <span class="tl-num">06</span>
+            <img src="https://api.iconify.design/lucide:users.svg?color=%2315803D" alt="" class="tl-h-icon" />
+          </div>
+          <strong class="tl-h-title">Build Intelligence</strong>
+          <p class="tl-h-desc">City-wide fleet patterns</p>
+        </div>
+
+        <div class="tl-h-arrow">›</div>
+
+        <div class="tl-h-step">
+          <div class="tl-h-head">
+            <span class="tl-num">07</span>
+            <img src="https://api.iconify.design/lucide:git-branch.svg?color=%2315803D" alt="" class="tl-h-icon" />
+          </div>
+          <strong class="tl-h-title">Recommend</strong>
+          <p class="tl-h-desc">Fast & connected routes</p>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- ==================== ROW 4: 5. KEY FEATURES (3x3 MATRIX) & EMERGING TECH + 8. EXAMPLE ==================== -->
+    <section class="grid-dual-power-row">
+      
+      <!-- Left: 5. KEY FEATURES (High Contrast Dark Navy Matrix) -->
       <article class="dark-card key-features-card">
         <div class="dark-card-header">
           <span class="card-badge-dark">5</span>
-          <h2 class="card-heading-dark">KEY FEATURES</h2>
+          <h2 class="card-heading-dark">KEY SYSTEM FEATURES</h2>
+          <span class="kf-badge-sub">9 Core Capabilities</span>
         </div>
-        <div class="dark-card-body">
+
+        <div class="kf-grid-3x3">
           
-          <div class="kf-item">
-            <div class="kf-icon-box"><span class="kf-badge-num">88%</span></div>
-            <div class="kf-text">
-              <strong class="kf-title">Service Probability</strong>
-              <p class="kf-desc">Estimates how likely a commuter is to find transportation at a particular location and time.</p>
+          <!-- Feature 1 -->
+          <div class="kf-card-cell">
+            <div class="kf-cell-head">
+              <span class="kf-metric-pill">88%</span>
+              <strong class="kf-cell-title">Service Probability</strong>
             </div>
+            <span class="kf-cell-meta">Live likelihood of finding a ride</span>
           </div>
 
-          <div class="kf-item">
-            <div class="kf-icon-box"><img src="https://api.iconify.design/lucide:search.svg?color=%2322C55E" alt="" class="kf-svg" /></div>
-            <div class="kf-text">
-              <strong class="kf-title">Smart Pickup Areas</strong>
-              <p class="kf-desc">Identifies locations where successful transport activity frequently occurs.</p>
+          <!-- Feature 2 -->
+          <div class="kf-card-cell">
+            <div class="kf-cell-head">
+              <img src="https://api.iconify.design/lucide:map-pin.svg?color=%2322C55E" alt="" class="kf-svg" />
+              <strong class="kf-cell-title">Smart Pickup Areas</strong>
             </div>
+            <span class="kf-cell-meta">High-frequency boarding clusters</span>
           </div>
 
-          <div class="kf-item">
-            <div class="kf-icon-box"><img src="https://api.iconify.design/lucide:clock.svg?color=%2322C55E" alt="" class="kf-svg" /></div>
-            <div class="kf-text">
-              <strong class="kf-title">Opportunity Window</strong>
-              <p class="kf-desc">Shows a realistic waiting range such as <em>Typical ride opportunity: 4–7 minutes</em> instead of pretending to know an exact vehicle arrival time.</p>
+          <!-- Feature 3 -->
+          <div class="kf-card-cell">
+            <div class="kf-cell-head">
+              <img src="https://api.iconify.design/lucide:clock.svg?color=%2322C55E" alt="" class="kf-svg" />
+              <strong class="kf-cell-title">Opportunity Window</strong>
             </div>
+            <span class="kf-cell-meta">Realistic 3–6 min wait interval</span>
           </div>
 
-          <div class="kf-item">
-            <div class="kf-icon-box"><img src="https://api.iconify.design/lucide:calendar.svg?color=%2322C55E" alt="" class="kf-svg" /></div>
-            <div class="kf-text">
-              <strong class="kf-title">Time-Based Mobility</strong>
-              <p class="kf-desc">Learns how transport availability changes between morning, afternoon, evening, weekdays, and weekends.</p>
+          <!-- Feature 4 -->
+          <div class="kf-card-cell">
+            <div class="kf-cell-head">
+              <img src="https://api.iconify.design/lucide:calendar.svg?color=%2322C55E" alt="" class="kf-svg" />
+              <strong class="kf-cell-title">Time-Based Mobility</strong>
             </div>
+            <span class="kf-cell-meta">Morning, night & weekend trends</span>
           </div>
 
-          <div class="kf-item">
-            <div class="kf-icon-box"><img src="https://api.iconify.design/lucide:eye.svg?color=%2322C55E" alt="" class="kf-svg" /></div>
-            <div class="kf-text">
-              <strong class="kf-title">Confidence & Freshness</strong>
-              <p class="kf-desc">Every recommendation shows how much recent evidence supports it.</p>
-              <div class="kf-conf-pill">
-                <span>High Confidence • 31 observations at similar times • Last observation: 8 minutes ago</span>
-                <span class="kf-bars">📶</span>
-              </div>
+          <!-- Feature 5 -->
+          <div class="kf-card-cell">
+            <div class="kf-cell-head">
+              <img src="https://api.iconify.design/lucide:eye.svg?color=%2322C55E" alt="" class="kf-svg" />
+              <strong class="kf-cell-title">Confidence & Freshness</strong>
             </div>
+            <span class="kf-cell-meta">31+ observations • 📶 High</span>
           </div>
 
-          <div class="kf-item">
-            <div class="kf-icon-box"><img src="https://api.iconify.design/lucide:bar-chart-2.svg?color=%2322C55E" alt="" class="kf-svg" /></div>
-            <div class="kf-text">
-              <strong class="kf-title">Connectivity-Aware Routes</strong>
-              <p class="kf-desc">Compares transportation choices based on both mobility and cellular connectivity.</p>
+          <!-- Feature 6 -->
+          <div class="kf-card-cell">
+            <div class="kf-cell-head">
+              <img src="https://api.iconify.design/lucide:bar-chart-2.svg?color=%2322C55E" alt="" class="kf-svg" />
+              <strong class="kf-cell-title">Connectivity-Aware</strong>
             </div>
+            <span class="kf-cell-meta">Compare speed vs signal strength</span>
           </div>
 
-          <div class="kf-item">
-            <div class="kf-icon-box"><img src="https://api.iconify.design/lucide:map.svg?color=%2322C55E" alt="" class="kf-svg" /></div>
-            <div class="kf-text">
-              <strong class="kf-title">Route Pattern Discovery</strong>
-              <p class="kf-desc">Detects recurring and emerging transport corridors from aggregated passenger movement.</p>
+          <!-- Feature 7 -->
+          <div class="kf-card-cell">
+            <div class="kf-cell-head">
+              <img src="https://api.iconify.design/lucide:map.svg?color=%2322C55E" alt="" class="kf-svg" />
+              <strong class="kf-cell-title">Pattern Discovery</strong>
             </div>
+            <span class="kf-cell-meta">Uncovers informal transit routes</span>
           </div>
 
-          <div class="kf-item">
-            <div class="kf-icon-box"><img src="https://api.iconify.design/lucide:database.svg?color=%2322C55E" alt="" class="kf-svg" /></div>
-            <div class="kf-text">
-              <strong class="kf-title">Offline Cached Insights</strong>
-              <p class="kf-desc">Previously learned mobility information remains accessible during weak connectivity.</p>
+          <!-- Feature 8 -->
+          <div class="kf-card-cell">
+            <div class="kf-cell-head">
+              <img src="https://api.iconify.design/lucide:database.svg?color=%2322C55E" alt="" class="kf-svg" />
+              <strong class="kf-cell-title">Offline Caching</strong>
             </div>
+            <span class="kf-cell-meta">Full query access in dead zones</span>
           </div>
 
-          <div class="kf-item">
-            <div class="kf-icon-box"><img src="https://api.iconify.design/lucide:shield-check.svg?color=%2322C55E" alt="" class="kf-svg" /></div>
-            <div class="kf-text">
-              <strong class="kf-title">No Driver App Required</strong>
-              <p class="kf-desc">RouteSense learns from participating passenger smartphones rather than requiring every vehicle to join the platform.</p>
+          <!-- Feature 9 -->
+          <div class="kf-card-cell">
+            <div class="kf-cell-head">
+              <img src="https://api.iconify.design/lucide:shield-check.svg?color=%2322C55E" alt="" class="kf-svg" />
+              <strong class="kf-cell-title">Zero Driver App</strong>
             </div>
+            <span class="kf-cell-meta">100% passenger crowdsensed</span>
           </div>
 
         </div>
       </article>
 
-      <!-- Right Column: Emerging Tech & Phone Hardware & 8. Example -->
+      <!-- Right: Emerging Tech & Phone Hardware & 8. Example -->
       <div class="right-stack-col">
         
         <!-- Emerging Tech Card -->
         <article class="clean-card emerging-tech-card">
+          <div class="card-header-bar">
+            <span class="card-badge">6</span>
+            <h2 class="card-heading">EMERGING TECHNOLOGIES & SENSORS</h2>
+          </div>
+
           <div class="no-tracker-chip">
             <img src="https://api.iconify.design/lucide:shield-alert.svg?color=%2315803D" alt="" class="nt-svg" />
-            <span>No dedicated GPS tracker or driver application is required.</span>
+            <span>Zero vehicle installation • No driver app or GPS tracker required</span>
           </div>
 
           <div class="tech-concepts-grid">
             
             <div class="tc-item">
               <img src="https://api.iconify.design/lucide:cpu.svg?color=%230F172A" alt="" class="tc-icon" />
-              <div>
-                <strong>Smartphone Sensor Fusion:</strong> Combines multiple phone sensors for movement understanding beyond GPS alone.
-              </div>
+              <div><strong>Sensor Fusion & Activity Recognition:</strong> Combines IMU + GNSS to detect <em>Walking → Waiting → In Vehicle</em>.</div>
             </div>
 
             <div class="tc-item">
-              <img src="https://api.iconify.design/lucide:activity.svg?color=%230F172A" alt="" class="tc-icon" />
-              <div>
-                <strong>Activity Recognition:</strong> Identifies transitions: <em>Walking → Waiting → In Vehicle → Walking</em>.
-              </div>
-            </div>
-
-            <div class="tc-item">
-              <img src="https://api.iconify.design/lucide:satellite.svg?color=%230F172A" alt="" class="tc-icon" />
-              <div>
-                <strong>GNSS / Geospatial Analytics:</strong> Analyzes movement trajectories and spatial patterns.
-              </div>
-            </div>
-
-            <div class="tc-item">
-              <img src="https://api.iconify.design/lucide:signal.svg?color=%230F172A" alt="" class="tc-icon" />
-              <div>
-                <strong>Cellular Signal Intelligence:</strong> Measures network conditions during real passenger journeys.
-              </div>
-            </div>
-
-            <div class="tc-item">
-              <img src="https://api.iconify.design/lucide:compass.svg?color=%230F172A" alt="" class="tc-icon" />
-              <div>
-                <strong>Context-Aware Computing:</strong> Considers location, time, activity, and environment when interpreting mobility.
-              </div>
-            </div>
-
-            <div class="tc-item">
-              <img src="https://api.iconify.design/lucide:binary.svg?color=%230F172A" alt="" class="tc-icon" />
-              <div>
-                <strong>On-Device Inference:</strong> Processes sensitive movement data locally before sharing minimized results.
-              </div>
+              <img src="https://api.iconify.design/lucide:radio.svg?color=%230F172A" alt="" class="tc-icon" />
+              <div><strong>Cellular Signal Intelligence:</strong> Maps network QoS during transit journeys.</div>
             </div>
 
             <div class="tc-item">
               <img src="https://api.iconify.design/lucide:git-pull-request.svg?color=%230F172A" alt="" class="tc-icon" />
-              <div>
-                <strong>Geospatial Clustering:</strong> Finds recurring pickup areas, transport corridors, and mobility hotspots.
-              </div>
-            </div>
-
-            <div class="tc-item">
-              <img src="https://api.iconify.design/lucide:trending-up.svg?color=%230F172A" alt="" class="tc-icon" />
-              <div>
-                <strong>Predictive Analytics:</strong> Estimates service probability based on historical and recent observations.
-              </div>
+              <div><strong>Geospatial Clustering & ML:</strong> PostGIS + H3 hexagons with XGBoost predictive analytics.</div>
             </div>
 
             <div class="tc-item">
               <img src="https://api.iconify.design/lucide:shield.svg?color=%230F172A" alt="" class="tc-icon" />
-              <div>
-                <strong>Privacy-Preserving Aggregation:</strong> Builds community mobility intelligence without publishing individual travel histories.
-              </div>
+              <div><strong>Privacy-Preserving On-Device AI:</strong> Local edge inference without raw trip logging.</div>
             </div>
 
           </div>
 
           <!-- Phone Hardware Used Bar -->
           <div class="phone-hw-bar">
-            <div class="ph-title">PHONE HARDWARE USED</div>
+            <div class="ph-title">PHONE SENSORS UTILIZED</div>
             <div class="hw-icons-row">
               <div class="hw-item">
                 <img src="https://api.iconify.design/lucide:satellite.svg?color=%230F172A" alt="" class="hw-svg" />
-                <span>GPS / GNSS</span>
+                <span>GPS/GNSS</span>
               </div>
               <div class="hw-item">
                 <img src="https://api.iconify.design/lucide:activity.svg?color=%230F172A" alt="" class="hw-svg" />
@@ -1197,7 +1319,7 @@ body {
               </div>
               <div class="hw-item">
                 <img src="https://api.iconify.design/lucide:navigation.svg?color=%230F172A" alt="" class="hw-svg" />
-                <span>Compass / Magnetometer</span>
+                <span>Magnetometer</span>
               </div>
             </div>
           </div>
@@ -1205,11 +1327,11 @@ body {
         </article>
 
         <!-- 8. EXAMPLE Card -->
-        <article class="example-card">
+        <article class="clean-card example-card">
           <div class="example-header">
             <span class="ex-badge">8</span>
-            <span class="ex-heading">EXAMPLE</span>
-            <span class="ex-query">Going to Visayan Village — 8:30 PM</span>
+            <span class="ex-heading">REAL-WORLD RECOMMENDATION EXAMPLE</span>
+            <span class="ex-query">Visayan Village — 8:30 PM</span>
           </div>
 
           <div class="example-options-grid">
@@ -1218,8 +1340,7 @@ body {
             <div class="ex-option-box opt-a">
               <div class="ex-opt-title-row">
                 <span class="opt-dot green-dot"></span>
-                <strong>OPTION A</strong>
-                <span class="opt-sub">Main Pickup Area</span>
+                <strong>OPTION A: Main Terminal</strong>
               </div>
               <div class="ex-metrics-row">
                 <div class="ex-met">
@@ -1227,18 +1348,12 @@ body {
                   <span class="met-val green-val">88%</span>
                 </div>
                 <div class="ex-met">
-                  <span class="met-label">Typical Opportunity</span>
+                  <span class="met-label">Typical Wait</span>
                   <span class="met-val">3–6 min</span>
                 </div>
-              </div>
-              <div class="ex-sub-metrics">
-                <div class="sub-met">
-                  <span>✔ Confidence:</span>
-                  <strong>High</strong>
-                </div>
-                <div class="sub-met">
-                  <span>📶 Connectivity:</span>
-                  <strong>Moderate</strong>
+                <div class="ex-met">
+                  <span class="met-label">Signal</span>
+                  <span class="met-val-sm">Moderate</span>
                 </div>
               </div>
               <div class="opt-btn-pill btn-fastest">
@@ -1250,8 +1365,7 @@ body {
             <div class="ex-option-box opt-b">
               <div class="ex-opt-title-row">
                 <span class="opt-dot blue-dot"></span>
-                <strong>OPTION B</strong>
-                <span class="opt-sub">Alternate Pickup Area</span>
+                <strong>OPTION B: Alternate Stop</strong>
               </div>
               <div class="ex-metrics-row">
                 <div class="ex-met">
@@ -1259,18 +1373,12 @@ body {
                   <span class="met-val blue-val">74%</span>
                 </div>
                 <div class="ex-met">
-                  <span class="met-label">Typical Opportunity</span>
+                  <span class="met-label">Typical Wait</span>
                   <span class="met-val">6–10 min</span>
                 </div>
-              </div>
-              <div class="ex-sub-metrics">
-                <div class="sub-met">
-                  <span>✔ Confidence:</span>
-                  <strong>Moderate</strong>
-                </div>
-                <div class="sub-met">
-                  <span>📶 Connectivity:</span>
-                  <strong>Very Good</strong>
+                <div class="ex-met">
+                  <span class="met-label">Signal</span>
+                  <span class="met-val-sm blue-text">Very Good</span>
                 </div>
               </div>
               <div class="opt-btn-pill btn-connected">
@@ -1285,7 +1393,7 @@ body {
 
     </section>
 
-    <!-- ==================== ROW 3: 7. TECH STACK (Dark Bar) ==================== -->
+    <!-- ==================== ROW 5: 7. TECH STACK (DARK BAR) ==================== -->
     <section class="tech-stack-row">
       <div class="ts-header">
         <span class="ts-badge">7</span>
@@ -1297,31 +1405,31 @@ body {
         <div class="ts-card">
           <img src="https://cdn.simpleicons.org/react/61DAFB" alt="" class="ts-logo" />
           <div class="ts-info">
-            <span class="ts-role">Mobile App</span>
-            <span class="ts-tech">React Native + TypeScript</span>
+            <span class="ts-role">Mobile Client</span>
+            <span class="ts-tech">React Native + TS</span>
           </div>
         </div>
 
         <div class="ts-card">
           <img src="https://cdn.simpleicons.org/kotlin/7F52FF" alt="" class="ts-logo" />
           <div class="ts-info">
-            <span class="ts-role">Android Sensor Layer</span>
-            <span class="ts-tech">Kotlin</span>
+            <span class="ts-role">Sensor Layer</span>
+            <span class="ts-tech">Kotlin Core</span>
           </div>
         </div>
 
         <div class="ts-card">
           <img src="https://cdn.simpleicons.org/sqlite/003B57" alt="" class="ts-logo" />
           <div class="ts-info">
-            <span class="ts-role">Local Storage</span>
-            <span class="ts-tech">SQLite</span>
+            <span class="ts-role">Offline Cache</span>
+            <span class="ts-tech">SQLite DB</span>
           </div>
         </div>
 
         <div class="ts-card">
           <img src="https://cdn.simpleicons.org/openstreetmap/7EBC6F" alt="" class="ts-logo" />
           <div class="ts-info">
-            <span class="ts-role">Maps</span>
+            <span class="ts-role">Mapping</span>
             <span class="ts-tech">MapLibre + OSM</span>
           </div>
         </div>
@@ -1329,51 +1437,51 @@ body {
         <div class="ts-card">
           <img src="https://cdn.simpleicons.org/supabase/3ECF8E" alt="" class="ts-logo" />
           <div class="ts-info">
-            <span class="ts-role">Geospatial Backend</span>
-            <span class="ts-tech">Supabase + PostgreSQL</span>
+            <span class="ts-role">Backend DB</span>
+            <span class="ts-tech">Supabase Postgres</span>
           </div>
         </div>
 
         <div class="ts-card">
           <img src="https://cdn.simpleicons.org/postgresql/4169E1" alt="" class="ts-logo" />
           <div class="ts-info">
-            <span class="ts-role">Geospatial Processing</span>
-            <span class="ts-tech">PostGIS + H3</span>
+            <span class="ts-role">Spatial Index</span>
+            <span class="ts-tech">PostGIS + Uber H3</span>
           </div>
         </div>
 
         <div class="ts-card">
           <img src="https://cdn.simpleicons.org/python/3776AB" alt="" class="ts-logo" />
           <div class="ts-info">
-            <span class="ts-role">Data Analytics</span>
-            <span class="ts-tech">Python + pandas + scikit-learn</span>
+            <span class="ts-role">Data Science</span>
+            <span class="ts-tech">Python + Pandas</span>
           </div>
         </div>
 
         <div class="ts-card">
           <img src="https://cdn.simpleicons.org/apache/D22128" alt="" class="ts-logo" />
           <div class="ts-info">
-            <span class="ts-role">Predictive Models</span>
-            <span class="ts-tech">XGBoost / lightweight models</span>
+            <span class="ts-role">Inference</span>
+            <span class="ts-tech">XGBoost ML</span>
           </div>
         </div>
 
       </div>
     </section>
 
-    <!-- ==================== FOOTER ROW: 9. PROJECT TEAM / 10. REFERENCES & CITATIONS / QR ==================== -->
+    <!-- ==================== ROW 6: FOOTER (TEAM / CITATIONS / QR) ==================== -->
     <footer class="poster-footer-row">
       
       <!-- 9. PROJECT TEAM -->
       <div class="footer-col-team">
         <div class="foot-section-header">
           <span class="foot-badge">9</span>
-          <span class="foot-heading">PROJECT TEAM</span>
+          <span class="foot-heading">PROJECT TEAM & PROPONENTS</span>
         </div>
 
         <div class="team-proponents-grid">
           <div class="proponent-box">
-            <img src="https://api.iconify.design/lucide:user-check.svg?color=%230F172A" alt="" class="prop-user-svg" />
+            <img src="https://api.iconify.design/lucide:user-check.svg?color=%2315803D" alt="" class="prop-user-svg" />
             <span><strong>Ryan Christian Deniega</strong></span>
           </div>
           <div class="proponent-box">
