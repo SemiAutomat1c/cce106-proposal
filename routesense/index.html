@@ -225,7 +225,7 @@
         </div>
         <div class="card-body">
           <p class="card-p">
-            <strong>RouteSense</strong> uses built-in passenger smartphone sensors to understand informal transit behavior over time without driver apps or trackers.
+            <strong>RouteSense</strong> uses built-in smartphone sensors to understand informal transit behavior over time without driver apps or trackers.
           </p>
 
           <div class="sol-layers-box">
@@ -270,96 +270,119 @@
 
     </section>
 
-    <!-- ==================== ROW 3: 4. HOW IT WORKS (HORIZONTAL WORKFLOW STRIP) ==================== -->
-    <section class="clean-card workflow-strip-card">
-      <div class="card-header-bar-workflow">
+    <!-- ==================== ROW 3: 4. HOW IT WORKS (RICH BALANCED WORKFLOW) ==================== -->
+    <section class="clean-card workflow-expanded-card">
+      <div class="card-header-bar">
         <span class="card-badge">4</span>
         <h2 class="card-heading">HOW IT WORKS — PASSENGER SENSING TO MOBILITY INTELLIGENCE</h2>
+        <span class="wf-subtitle">7-Stage End-to-End Pipeline</span>
       </div>
-      <div class="timeline-horizontal">
+
+      <div class="timeline-rich-grid">
         
-        <div class="tl-h-step">
-          <div class="tl-h-head">
-            <span class="tl-num">01</span>
-            <img src="https://api.iconify.design/lucide:smartphone.svg?color=%2315803D" alt="" class="tl-h-icon" />
+        <!-- Step 1 -->
+        <div class="wf-step-box">
+          <div class="wf-step-top">
+            <span class="wf-badge">01</span>
+            <div class="wf-icon-wrap">
+              <img src="https://api.iconify.design/lucide:smartphone.svg?color=%2315803D" alt="" class="wf-icon" />
+            </div>
           </div>
-          <strong class="tl-h-title">Opt In</strong>
-          <p class="tl-h-desc">Voluntary passive sensing</p>
+          <strong class="wf-title">Opt In</strong>
+          <p class="wf-desc">Commuter enables background passive mobility sensing voluntarily.</p>
         </div>
 
-        <div class="tl-h-arrow">›</div>
+        <div class="wf-connector">›</div>
 
-        <div class="tl-h-step">
-          <div class="tl-h-head">
-            <span class="tl-num">02</span>
-            <img src="https://api.iconify.design/lucide:footprints.svg?color=%2315803D" alt="" class="tl-h-icon" />
+        <!-- Step 2 -->
+        <div class="wf-step-box">
+          <div class="wf-step-top">
+            <span class="wf-badge">02</span>
+            <div class="wf-icon-wrap">
+              <img src="https://api.iconify.design/lucide:footprints.svg?color=%2315803D" alt="" class="wf-icon" />
+            </div>
           </div>
-          <strong class="tl-h-title">Sense Movement</strong>
-          <p class="tl-h-desc">Walk → Wait → Vehicle</p>
+          <strong class="wf-title">Sense Movement</strong>
+          <p class="wf-desc">Auto-detects transitions: <em>Walking → Waiting → In Vehicle</em>.</p>
         </div>
 
-        <div class="tl-h-arrow">›</div>
+        <div class="wf-connector">›</div>
 
-        <div class="tl-h-step">
-          <div class="tl-h-head">
-            <span class="tl-num">03</span>
-            <img src="https://api.iconify.design/lucide:radio.svg?color=%2315803D" alt="" class="tl-h-icon" />
+        <!-- Step 3 -->
+        <div class="wf-step-box">
+          <div class="wf-step-top">
+            <span class="wf-badge">03</span>
+            <div class="wf-icon-wrap">
+              <img src="https://api.iconify.design/lucide:radio.svg?color=%2315803D" alt="" class="wf-icon" />
+            </div>
           </div>
-          <strong class="tl-h-title">Collect Context</strong>
-          <p class="tl-h-desc">GNSS, sensors & signal</p>
+          <strong class="wf-title">Collect Context</strong>
+          <p class="wf-desc">Samples GNSS, IMU motion, timestamp & cellular signal dBm.</p>
         </div>
 
-        <div class="tl-h-arrow">›</div>
+        <div class="wf-connector">›</div>
 
-        <div class="tl-h-step">
-          <div class="tl-h-head">
-            <span class="tl-num">04</span>
-            <img src="https://api.iconify.design/lucide:cpu.svg?color=%2315803D" alt="" class="tl-h-icon" />
+        <!-- Step 4 -->
+        <div class="wf-step-box">
+          <div class="wf-step-top">
+            <span class="wf-badge">04</span>
+            <div class="wf-icon-wrap">
+              <img src="https://api.iconify.design/lucide:cpu.svg?color=%2315803D" alt="" class="wf-icon" />
+            </div>
           </div>
-          <strong class="tl-h-title">Analyze On-Device</strong>
-          <p class="tl-h-desc">Extract local patterns</p>
+          <strong class="wf-title">Analyze On-Device</strong>
+          <p class="wf-desc">Extracts boarding zones, route corridors & connectivity.</p>
         </div>
 
-        <div class="tl-h-arrow">›</div>
+        <div class="wf-connector">›</div>
 
-        <div class="tl-h-step">
-          <div class="tl-h-head">
-            <span class="tl-num">05</span>
-            <img src="https://api.iconify.design/lucide:lock.svg?color=%2315803D" alt="" class="tl-h-icon" />
+        <!-- Step 5 -->
+        <div class="wf-step-box">
+          <div class="wf-step-top">
+            <span class="wf-badge">05</span>
+            <div class="wf-icon-wrap">
+              <img src="https://api.iconify.design/lucide:lock.svg?color=%2315803D" alt="" class="wf-icon" />
+            </div>
           </div>
-          <strong class="tl-h-title">Protect Privacy</strong>
-          <p class="tl-h-desc">Anonymous aggregation</p>
+          <strong class="wf-title">Protect Privacy</strong>
+          <p class="wf-desc">Minimizes raw GPS into anonymous, aggregated tokens.</p>
         </div>
 
-        <div class="tl-h-arrow">›</div>
+        <div class="wf-connector">›</div>
 
-        <div class="tl-h-step">
-          <div class="tl-h-head">
-            <span class="tl-num">06</span>
-            <img src="https://api.iconify.design/lucide:users.svg?color=%2315803D" alt="" class="tl-h-icon" />
+        <!-- Step 6 -->
+        <div class="wf-step-box">
+          <div class="wf-step-top">
+            <span class="wf-badge">06</span>
+            <div class="wf-icon-wrap">
+              <img src="https://api.iconify.design/lucide:users.svg?color=%2315803D" alt="" class="wf-icon" />
+            </div>
           </div>
-          <strong class="tl-h-title">Build Intelligence</strong>
-          <p class="tl-h-desc">City-wide fleet patterns</p>
+          <strong class="wf-title">Build Intelligence</strong>
+          <p class="wf-desc">Aggregates observations into city-wide transit patterns.</p>
         </div>
 
-        <div class="tl-h-arrow">›</div>
+        <div class="wf-connector">›</div>
 
-        <div class="tl-h-step">
-          <div class="tl-h-head">
-            <span class="tl-num">07</span>
-            <img src="https://api.iconify.design/lucide:git-branch.svg?color=%2315803D" alt="" class="tl-h-icon" />
+        <!-- Step 7 -->
+        <div class="wf-step-box">
+          <div class="wf-step-top">
+            <span class="wf-badge">07</span>
+            <div class="wf-icon-wrap">
+              <img src="https://api.iconify.design/lucide:git-branch.svg?color=%2315803D" alt="" class="wf-icon" />
+            </div>
           </div>
-          <strong class="tl-h-title">Recommend</strong>
-          <p class="tl-h-desc">Fast & connected routes</p>
+          <strong class="wf-title">Recommend</strong>
+          <p class="wf-desc">Delivers real-time ride probability & connectivity choices.</p>
         </div>
 
       </div>
     </section>
 
-    <!-- ==================== ROW 4: 5. KEY FEATURES (3x3 MATRIX) & EMERGING TECH + 8. EXAMPLE ==================== -->
-    <section class="grid-dual-power-row">
+    <!-- ==================== ROW 4: 5. KEY FEATURES (COMPACT 3x3) & 6. TECH + 8. EXAMPLE ==================== -->
+    <section class="grid-dual-balanced-row">
       
-      <!-- Left: 5. KEY FEATURES (High Contrast Dark Navy Matrix) -->
+      <!-- Left: 5. KEY FEATURES (Compact 3x3 Dark Matrix) -->
       <article class="dark-card key-features-card">
         <div class="dark-card-header">
           <span class="card-badge-dark">5</span>
@@ -369,7 +392,6 @@
 
         <div class="kf-grid-3x3">
           
-          <!-- Feature 1 -->
           <div class="kf-card-cell">
             <div class="kf-cell-head">
               <span class="kf-metric-pill">88%</span>
@@ -378,7 +400,6 @@
             <span class="kf-cell-meta">Live likelihood of finding a ride</span>
           </div>
 
-          <!-- Feature 2 -->
           <div class="kf-card-cell">
             <div class="kf-cell-head">
               <img src="https://api.iconify.design/lucide:map-pin.svg?color=%2322C55E" alt="" class="kf-svg" />
@@ -387,7 +408,6 @@
             <span class="kf-cell-meta">High-frequency boarding clusters</span>
           </div>
 
-          <!-- Feature 3 -->
           <div class="kf-card-cell">
             <div class="kf-cell-head">
               <img src="https://api.iconify.design/lucide:clock.svg?color=%2322C55E" alt="" class="kf-svg" />
@@ -396,43 +416,38 @@
             <span class="kf-cell-meta">Realistic 3–6 min wait interval</span>
           </div>
 
-          <!-- Feature 4 -->
           <div class="kf-card-cell">
             <div class="kf-cell-head">
               <img src="https://api.iconify.design/lucide:calendar.svg?color=%2322C55E" alt="" class="kf-svg" />
-              <strong class="kf-cell-title">Time-Based Mobility</strong>
+              <strong class="kf-cell-title">Time-Based Trends</strong>
             </div>
-            <span class="kf-cell-meta">Morning, night & weekend trends</span>
+            <span class="kf-cell-meta">Morning, night & weekend patterns</span>
           </div>
 
-          <!-- Feature 5 -->
           <div class="kf-card-cell">
             <div class="kf-cell-head">
               <img src="https://api.iconify.design/lucide:eye.svg?color=%2322C55E" alt="" class="kf-svg" />
-              <strong class="kf-cell-title">Confidence & Freshness</strong>
+              <strong class="kf-cell-title">Freshness Indicator</strong>
             </div>
             <span class="kf-cell-meta">31+ observations • 📶 High</span>
           </div>
 
-          <!-- Feature 6 -->
           <div class="kf-card-cell">
             <div class="kf-cell-head">
               <img src="https://api.iconify.design/lucide:bar-chart-2.svg?color=%2322C55E" alt="" class="kf-svg" />
               <strong class="kf-cell-title">Connectivity-Aware</strong>
             </div>
-            <span class="kf-cell-meta">Compare speed vs signal strength</span>
+            <span class="kf-cell-meta">Compare speed vs cellular QoS</span>
           </div>
 
-          <!-- Feature 7 -->
           <div class="kf-card-cell">
             <div class="kf-cell-head">
               <img src="https://api.iconify.design/lucide:map.svg?color=%2322C55E" alt="" class="kf-svg" />
               <strong class="kf-cell-title">Pattern Discovery</strong>
             </div>
-            <span class="kf-cell-meta">Uncovers informal transit routes</span>
+            <span class="kf-cell-meta">Uncovers informal transit lines</span>
           </div>
 
-          <!-- Feature 8 -->
           <div class="kf-card-cell">
             <div class="kf-cell-head">
               <img src="https://api.iconify.design/lucide:database.svg?color=%2322C55E" alt="" class="kf-svg" />
@@ -441,7 +456,6 @@
             <span class="kf-cell-meta">Full query access in dead zones</span>
           </div>
 
-          <!-- Feature 9 -->
           <div class="kf-card-cell">
             <div class="kf-cell-head">
               <img src="https://api.iconify.design/lucide:shield-check.svg?color=%2322C55E" alt="" class="kf-svg" />
@@ -453,10 +467,10 @@
         </div>
       </article>
 
-      <!-- Right: Emerging Tech & Phone Hardware & 8. Example -->
+      <!-- Right: 6. Emerging Tech & Sensors + 8. Example -->
       <div class="right-stack-col">
         
-        <!-- Emerging Tech Card -->
+        <!-- 6. Emerging Tech Card -->
         <article class="clean-card emerging-tech-card">
           <div class="card-header-bar">
             <span class="card-badge">6</span>
@@ -468,52 +482,62 @@
             <span>Zero vehicle installation • No driver app or GPS tracker required</span>
           </div>
 
-          <div class="tech-concepts-grid">
-            
-            <div class="tc-item">
-              <img src="https://api.iconify.design/lucide:cpu.svg?color=%230F172A" alt="" class="tc-icon" />
-              <div><strong>Sensor Fusion & Activity Recognition:</strong> Combines IMU + GNSS to detect <em>Walking → Waiting → In Vehicle</em>.</div>
+          <div class="tech-concepts-2x2-grid">
+            <div class="tc-card-pill">
+              <div class="tc-pill-head">
+                <img src="https://api.iconify.design/lucide:cpu.svg?color=%2315803D" alt="" class="tc-pill-icon" />
+                <strong>Sensor Fusion & Activity AI</strong>
+              </div>
+              <p>Fuses IMU + GNSS to detect <em>Walking → Waiting → In Vehicle</em> transit states.</p>
             </div>
 
-            <div class="tc-item">
-              <img src="https://api.iconify.design/lucide:radio.svg?color=%230F172A" alt="" class="tc-icon" />
-              <div><strong>Cellular Signal Intelligence:</strong> Maps network QoS during transit journeys.</div>
+            <div class="tc-card-pill">
+              <div class="tc-pill-head">
+                <img src="https://api.iconify.design/lucide:radio.svg?color=%2315803D" alt="" class="tc-pill-icon" />
+                <strong>Cellular QoS Mapping</strong>
+              </div>
+              <p>Maps real-world carrier signal strength & connectivity dead zones along routes.</p>
             </div>
 
-            <div class="tc-item">
-              <img src="https://api.iconify.design/lucide:git-pull-request.svg?color=%230F172A" alt="" class="tc-icon" />
-              <div><strong>Geospatial Clustering & ML:</strong> PostGIS + H3 hexagons with XGBoost predictive analytics.</div>
+            <div class="tc-card-pill">
+              <div class="tc-pill-head">
+                <img src="https://api.iconify.design/lucide:git-pull-request.svg?color=%2315803D" alt="" class="tc-pill-icon" />
+                <strong>Spatial Clustering & ML</strong>
+              </div>
+              <p>PostGIS + Uber H3 hexagonal binning with XGBoost predictive analytics.</p>
             </div>
 
-            <div class="tc-item">
-              <img src="https://api.iconify.design/lucide:shield.svg?color=%230F172A" alt="" class="tc-icon" />
-              <div><strong>Privacy-Preserving On-Device AI:</strong> Local edge inference without raw trip logging.</div>
+            <div class="tc-card-pill">
+              <div class="tc-pill-head">
+                <img src="https://api.iconify.design/lucide:shield.svg?color=%2315803D" alt="" class="tc-pill-icon" />
+                <strong>Privacy-First Edge Inference</strong>
+              </div>
+              <p>Processes movements on-device; publishes only aggregated, anonymous transit trends.</p>
             </div>
-
           </div>
 
           <!-- Phone Hardware Used Bar -->
           <div class="phone-hw-bar">
-            <div class="ph-title">PHONE SENSORS UTILIZED</div>
+            <div class="ph-title">SMARTPHONE SENSORS UTILIZED</div>
             <div class="hw-icons-row">
               <div class="hw-item">
-                <img src="https://api.iconify.design/lucide:satellite.svg?color=%230F172A" alt="" class="hw-svg" />
-                <span>GPS/GNSS</span>
+                <img src="https://api.iconify.design/lucide:satellite.svg?color=%2315803D" alt="" class="hw-svg" />
+                <span>GPS / GNSS</span>
               </div>
               <div class="hw-item">
-                <img src="https://api.iconify.design/lucide:activity.svg?color=%230F172A" alt="" class="hw-svg" />
+                <img src="https://api.iconify.design/lucide:activity.svg?color=%2315803D" alt="" class="hw-svg" />
                 <span>Accelerometer</span>
               </div>
               <div class="hw-item">
-                <img src="https://api.iconify.design/lucide:compass.svg?color=%230F172A" alt="" class="hw-svg" />
+                <img src="https://api.iconify.design/lucide:compass.svg?color=%2315803D" alt="" class="hw-svg" />
                 <span>Gyroscope</span>
               </div>
               <div class="hw-item">
-                <img src="https://api.iconify.design/lucide:signal.svg?color=%230F172A" alt="" class="hw-svg" />
+                <img src="https://api.iconify.design/lucide:signal.svg?color=%2315803D" alt="" class="hw-svg" />
                 <span>Cellular Modem</span>
               </div>
               <div class="hw-item">
-                <img src="https://api.iconify.design/lucide:navigation.svg?color=%230F172A" alt="" class="hw-svg" />
+                <img src="https://api.iconify.design/lucide:navigation.svg?color=%2315803D" alt="" class="hw-svg" />
                 <span>Magnetometer</span>
               </div>
             </div>
@@ -526,7 +550,33 @@
           <div class="example-header">
             <span class="ex-badge">8</span>
             <span class="ex-heading">REAL-WORLD RECOMMENDATION EXAMPLE</span>
-            <span class="ex-query">Visayan Village — 8:30 PM</span>
+            <span class="ex-query">Visayan Village — 8:30 PM (Evening Peak)</span>
+          </div>
+
+          <!-- Scenario Callout -->
+          <div class="ex-scenario-bar">
+            <img src="https://api.iconify.design/lucide:map-pin.svg?color=%2315803D" alt="" class="ex-scen-icon" />
+            <span><strong>Decision Engine:</strong> Compares arrival speed vs signal strength in real time.</span>
+          </div>
+
+          <!-- Route Comparison Matrix Row -->
+          <div class="ex-matrix-strip">
+            <div class="matrix-cell">
+              <span class="mat-lbl">CORRIDOR</span>
+              <strong class="mat-val">National Highway</strong>
+            </div>
+            <div class="matrix-cell">
+              <span class="mat-lbl">AVAILABILITY</span>
+              <strong class="mat-val green-text">High (Every 3–5 min)</strong>
+            </div>
+            <div class="matrix-cell">
+              <span class="mat-lbl">SIGNAL QoS</span>
+              <strong class="mat-val">Moderate LTE</strong>
+            </div>
+            <div class="matrix-cell">
+              <span class="mat-lbl">BEST FIT</span>
+              <strong class="mat-val">Fastest Commute</strong>
+            </div>
           </div>
 
           <div class="example-options-grid">
@@ -536,6 +586,7 @@
               <div class="ex-opt-title-row">
                 <span class="opt-dot green-dot"></span>
                 <strong>OPTION A: Main Terminal</strong>
+                <span class="opt-tag-pill green-tag">National Hwy</span>
               </div>
               <div class="ex-metrics-row">
                 <div class="ex-met">
@@ -548,11 +599,11 @@
                 </div>
                 <div class="ex-met">
                   <span class="met-label">Signal</span>
-                  <span class="met-val-sm">Moderate</span>
+                  <span class="met-val-sm">Moderate LTE</span>
                 </div>
               </div>
               <div class="opt-btn-pill btn-fastest">
-                FASTEST CHOICE: OPTION A
+                FASTEST CHOICE: OPTION A (Save ~4 min)
               </div>
             </div>
 
@@ -561,6 +612,7 @@
               <div class="ex-opt-title-row">
                 <span class="opt-dot blue-dot"></span>
                 <strong>OPTION B: Alternate Stop</strong>
+                <span class="opt-tag-pill blue-tag">Apokon Bypass</span>
               </div>
               <div class="ex-metrics-row">
                 <div class="ex-met">
@@ -573,11 +625,11 @@
                 </div>
                 <div class="ex-met">
                   <span class="met-label">Signal</span>
-                  <span class="met-val-sm blue-text">Very Good</span>
+                  <span class="met-val-sm blue-text">Very Good 5G</span>
                 </div>
               </div>
               <div class="opt-btn-pill btn-connected">
-                BEST CONNECTED: OPTION B
+                BEST CONNECTED: OPTION B (HD Calls/Work)
               </div>
             </div>
 
